@@ -50,10 +50,8 @@ html, body {
     height: 1in;
 
     text-align: center;
-    vertical-align: middle;
 
-    display: inline-block;
-    vertical-align: middle;
+    padding-top: 65px;
 }
 
 .theme5419-header-content span {
