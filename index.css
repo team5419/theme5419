@@ -63,7 +63,7 @@ html, body {
 }
 
 .theme5419-header-content span {
-    font-family: 'Robot', sans-serif;
+    font-family: 'Righteous', sans-serif;
     font-variant: bold;
     font-size: 18px;
     font-weight: 700;
@@ -80,7 +80,7 @@ html, body {
 }
 
 .theme5419-header-page {
-    font-family: 'Robot', sans-serif;
+    font-family: 'Righteous', sans-serif;
     font-size: 72px;
     color: white;
     margin: auto;
@@ -105,8 +105,7 @@ html, body {
 .theme5419-content {
     flex: 1 0 auto;
 
-    width: 970px;
-    margin: auto;
+    margin: 0px calc(var(--side-bar) + 1in);
 }
 
 /* footer */
