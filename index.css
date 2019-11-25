@@ -78,6 +78,9 @@ html, body {
 
 .theme5419-content {
     flex: 1 0 auto;
+
+    width: 970px;
+    margin: auto;
 }
 
 /* footer */
