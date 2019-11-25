@@ -1,6 +1,8 @@
 :root {
     --team-color: #990000;
-    --side-bar: 400px
+    --light-gray: #F3F3F3;
+    --side-bar: 400px;
+    --mobile-size: 900px;
 }
 
 * {
@@ -19,7 +21,7 @@ html, body {
 }
 
 body {
-    background-color: #F3F3F3;
+    background-color: var(--light-gray);
 }
 
 /* header */
@@ -71,7 +73,7 @@ body {
     font-variant: bold;
     font-size: 18px;
     font-weight: 700;
-    color: white;
+    color: var(--light-gray);
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -86,7 +88,7 @@ body {
 .theme5419-header-page {
     font-family: 'Righteous', sans-serif;
     font-size: 72px;
-    color: white;
+    color: var(--light-gray);
     margin: auto;
 }
 
@@ -108,8 +110,18 @@ body {
 
 .theme5419-content {
     flex: 1 0 auto;
+}
 
-    margin: 0px calc(var(--side-bar) + 1in);
+@media screen and  (min-width: 900px) {
+    .theme5419-content {
+        margin: 0px calc(var(--side-bar) + 1in);
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .theme5419-content {
+        margin: 5px;
+    }
 }
 
 /* footer */
