@@ -3,12 +3,19 @@
     --side-bar: 400px
 }
 
+* {
+    /* This makes size work properly, should be default */
+    box-sizing: border-box !important;
+}
+
 html, body {
     margin: 0px;
     height: 100%;
 
     display: flex;
     flex-direction: column;
+
+    overflow-x: hidden;
 }
 
 /* header */
@@ -28,10 +35,13 @@ html, body {
     text-align: center;
 }
 
+.theme5419-header-logo {
+    height: 1.5in;
+}
+
 .theme5419-header-triangle {
     height: 100%;
     float: left;
-
     z-index: -1;
 }
 
@@ -39,8 +49,6 @@ html, body {
     background-color: var(--team-color);
 
     flex: 1 0 auto;
-
-    box-sizing: border-box;
 
     padding: 10;
 
@@ -55,7 +63,7 @@ html, body {
 }
 
 .theme5419-header-content span {
-    font-family: Comfortaa;
+    font-family: 'Robot', sans-serif;
     font-variant: bold;
     font-size: 18px;
     font-weight: 700;
@@ -67,11 +75,29 @@ html, body {
 .theme5419-header-right {
     background-color: var(--team-color);
     width: var(--side-bar);
-    z-index: -1;
+    text-align: center;
+    padding-top: 10px;
 }
 
-.theme5419-header-image {
-    height: 100%;
+.theme5419-header-page {
+    font-family: 'Robot', sans-serif;
+    font-size: 72px;
+    color: white;
+    margin: auto;
+}
+
+.theme5419-header-search {
+    padding: 10px;
+}
+
+.theme5419-header-search input {
+    width: calc(100% - 35px);
+    float: left;
+}
+
+.theme5419-header-search button {
+    width: 30px;
+    float: left;
 }
 
 /* main content */
