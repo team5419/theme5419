@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- <style>
+            :root {
+                --team-color: #990000;
+            }
+
+            * {
+                box-sizing: border-box !important;
+            }
+
+            html, body {
+                margin: 0px;
+                height: 100%;
+                width: 100%;
+                display: table;
+            }
+
+            #header, #main, #footer {
+                display: table-row;
+                width: 100%;
+            }
+
+            #header div, #main div, #footer div {
+                display: table-cell;
+            }
+
+            #header {
+                height: 100px;
+            }
+
+            #footer {
+                height: 1in;
+                background-color: var(--team-color);
+            }
+
+            #header-left, #header-right {
+                width: 200px;
+            }
+
+            #header-content {
+                align-content: center;
+            }
+
+            #header-nav {
+                text-align: center;
+                width: 100vw;
+                padding-top: 50px;
+                padding-bottom: 10px;
+                background-color: var(--team-color);
+            }
+
+            #header-nav span {
+                margin: 10px;
+            }
+
+            .theme5419-header-triangle {
+                height: 100%;
+            }
+        </style> -->
+
+        <style>
+            :root {
+                --team-color: #990000;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            html, body {
+                margin: 0px;
+
+                height: 100%;
+                width: 100%;
+            }
+             
+            body {
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* Base flex layout */
+
+            .header, .main, .footer {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: no-wrap;
+
+                width: 100%;
+            }
+
+            .left, .right {
+                width: 200px;
+            }
+
+            .content {
+                flex: 1 0 auto;
+            }
+
+            .left, .content, .right {
+                display: flex;
+            }
+
+            /* header */
+
+            .header {
+                height: 1in;
+            }
+
+            /* main */
+
+            .main {
+                flex: 1 0 auto;
+            }
+
+            /* footer */
+
+            .footer {
+                height: 1in;
+                background-color: var(--team-color);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <div class="left"></div>
+            <div class="content"></div>
+            <div class="right"></div>
+        </div>
+
+        <div class="main">
+            <div class="left"></div>
+            <div class="content">
+            </div>
+            <div class="right"></div>
+        </div>
+
+        <div class="footer">
+            <div class="left"></div>
+            <div class="content"></div>
+            <div class="right"></div>
+        </div>
+    </body>
+</html>
