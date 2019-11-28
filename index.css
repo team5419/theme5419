@@ -1,85 +1,127 @@
 :root {
     --team-color: #990000;
     --light-gray: #F3F3F3;
-    --side-bar: 400px;
-    --mobile-size: 900px;
+    
+    --sidebar-side: 450px;
+
+    --header-height: 1.5in;
+    --neg-header-height: -1.5in;
 }
 
 * {
-    /* This makes size work properly, should be default */
-    box-sizing: border-box !important;
+    box-sizing: border-box;
 }
 
 html, body {
     margin: 0px;
-    height: 100%;
+
+    width: 100%;
 }
 
+html {
+    height: 100%;
+}
+ 
 body {
-    background-color: var(--light-gray);
     display: flex;
     flex-direction: column;
+    
+    font-family: 'Comfortaa';
+    font-weight: 13px;
+
+    min-height: 100%;
+
+    background-color: var(--light-gray);
+}
+
+/* base layout */
+
+.theme5419-header, .theme5419-main, .theme5419-footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: no-wrap;
+
+    width: 100%;
+}
+
+.theme5419-header .theme5419-left,
+.theme5419-header .theme5419-right,
+
+.theme5419-main .theme5419-left,
+.theme5419-main .theme5419-right,
+
+.theme5419-content .theme5419-left,
+.theme5419-content .theme5419-right {
+    width: var(--sidebar-side);
+    max-width: var(--sidebar-side);
+    min-width: var(--sidebar-side);
+}
+
+.theme5419-header .theme5419-content,
+.theme5419-main .theme5419-content,
+.theme5419-footer .theme5419-content {
+    width: 100%;
 }
 
 /* header */
 
 .theme5419-header {
-    flex-shrink: 0;
+    height: var(--header-height);
+}
 
-    display: flex;
-    flex-direction: row;
-
+.theme5419-navbar {
+    background-color: var(--team-color);
     width: 100%;
-}
-
-.theme5419-header-left {
-    background-color: var(--team-color);
-    width: var(--side-bar);
-    text-align: center;
-}
-
-.theme5419-header-logo {
-    height: 1.5in;
-}
-
-.theme5419-header-triangle {
-    height: 100%;
-    float: left;
-    z-index: -1;
-}
-
-.theme5419-header-content {
-    background-color: var(--team-color);
-
-    flex: 1 0 auto;
-
-    padding: 10;
-
-    margin-left: -1in;
-    margin-right: -1in;
-
-    height: 1in;
-
     text-align: center;
 
+    padding: 10px;
     padding-top: 65px;
 }
 
-.theme5419-header-content span {
+.theme5419-navbar span {
     font-family: 'Righteous', sans-serif;
-    font-variant: bold;
+    font-weight: bold;
     font-size: 18px;
-    font-weight: 700;
+
     color: var(--light-gray);
-    padding-left: 10px;
-    padding-right: 10px;
+    
+    margin: 10px;
 }
 
-.theme5419-header-right {
+.theme5419-header .theme5419-left,
+.theme5419-header .theme5419-right {
+    display: flex;
+}
+
+.theme5419-header .theme5419-left .theme5419-header-triangle {
+    margin-right: var(--neg-header-height);
+}
+
+.theme5419-header .theme5419-right .theme5419-header-triangle {
+    margin-left: var(--neg-header-height);
+}
+
+.theme5419-header-triangle {
+    z-index: -1;
+    height: 100%;
+}
+
+.theme5419-header .theme5419-right .theme5419-content,
+.theme5419-header .theme5419-left .theme5419-content {
+    width: 100%;
+    height: 100%;
+
     background-color: var(--team-color);
-    width: var(--side-bar);
+
     text-align: center;
+}
+
+.theme5419-header .theme5419-right .theme5419-content {
     padding-top: 10px;
+}
+
+.theme5419-header-logo {
+    height: 100%;
 }
 
 .theme5419-header-page {
@@ -89,8 +131,41 @@ body {
     margin: auto;
 }
 
-.theme5419-header-search {
-    padding: 10px;
+/* main */
+
+.theme5419-main {
+    flex: 1 0 auto;
+}
+
+.theme5419-main .theme5419-left,
+.theme5419-main .theme5419-right {
+    overflow: hidden;
+}
+
+.theme5419-sideimage {
+    width: 3in;
+    height: 100%;
+    float: left;
+    opacity: .75;
+}
+
+.theme5419-left .theme5419-sideimage {
+    float: left;
+}
+
+.theme5419-right .theme5419-sideimage {
+    float: right;
+}
+
+.theme5419-main .theme5419-content {
+    padding: 10px 30px;
+}
+
+/* footer */
+
+.theme5419-footer {
+    height: 1in;
+    background-color: var(--team-color);
 }
 
 .theme5419-header-search input {
@@ -101,31 +176,4 @@ body {
 .theme5419-header-search button {
     width: 30px;
     float: left;
-}
-
-/* main content */
-
-.theme5419-content {
-    flex: 1 0 auto;
-}
-
-@media screen and  (min-width: 900px) {
-    .theme5419-content {
-        margin: 0px calc(var(--side-bar) + 1in);
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .theme5419-content {
-        margin: 5px;
-    }
-}
-
-/* footer */
-
-.theme5419-footer {
-    flex-shrink: 0;
-
-    background-color: var(--team-color);
-    height: 1in;
 }
