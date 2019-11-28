@@ -2,13 +2,14 @@
     --team-color: #990000;
     --light-gray: #F3F3F3;
     
-    /* --sidebar-side: 330px; */
+    --sidebar-side: 330px;
     /* --sidebar-side: 450px; */
-    --sidebar-side: 100%;
 
     --header-height: 1.5in;
     --neg-header-height: -1.5in;
 }
+
+
 
 * {
     box-sizing: border-box;
@@ -168,6 +169,10 @@ body {
 /* device */
 
 @media screen and (max-width: 900px) {
+
+    :root {
+        --sidebar-side: 100%;
+    }
 
     /* Just hide the sidebars for main and footer on mobile */
 
