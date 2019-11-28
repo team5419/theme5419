@@ -156,8 +156,12 @@ body {
     background-color: var(--team-color);
 }
 
+.theme5419-header-search {
+    padding: 5px;
+}
+
 .theme5419-header-search input {
-    width: calc(100% - 35px);
+    width: calc(100% - 30px);
     float: left;
 }
 
@@ -195,28 +199,35 @@ body {
         height: 100%;
     }
 
-    .theme5419-header .theme5419-left,
-    .theme5419-header .theme5419-left {
-        display: block;
-        width: 100%;
-    }
-
     .theme5419-header-logo {
         width: 300px;
+    }
+
+    .theme5419-header .theme5419-content {
+        background-color: var(--team-color);
     }
 
     .theme5419-navbar {    
         padding: 10px;
         padding-top: 10px;
+
+        max-width: 340px;
+        display: table;
+        text-align: center;
+
+        margin: auto;
     }
     
-    .theme5419-navbar span {        
-        margin: 10px;
+    .theme5419-navbar span {  
+        display: table-cell;
+        margin: 0px;
     }
 
     .theme5419-header-search {
         margin: auto;
-        width: 360px;
+        max-width: 340px;
+        padding: 5px;
+        text-align: center;
     }
 
     .theme5419-header .theme5419-right .theme5419-content {
