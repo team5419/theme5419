@@ -181,9 +181,9 @@ body {
     float: left;
 }
 
-/* device */
+/* small screen */
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 940px) {
 
     :root {
         --sidebar-side: 100%;
@@ -244,5 +244,31 @@ body {
     .theme5419-header .theme5419-right .theme5419-content {
         padding-top: 0px;
         padding-bottom: 10px;
+    }
+}
+
+/* medium screen */
+
+@media screen and (max-width: 1300px) and (min-width: 940px) {
+    /* Just hide the right sidebars and footer on tablet */
+
+    .theme5419-main .theme5419-right,
+    .theme5419-footer .theme5419-right {
+        display: none;
+    }
+
+    .theme5419-header-page,
+    .theme5419-right .theme5419-header-triangle {
+        display: none;
+    }
+
+    .theme5419-header .theme5419-right {
+        min-width: 200px;
+        max-width: 200px;
+    }
+
+    .theme5419-header .theme5419-right .theme5419-content {
+        height: 98px;
+        padding-top: 65px;
     }
 }
