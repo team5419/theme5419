@@ -143,7 +143,7 @@ body {
 .theme5419-main .theme5419-left,
 .theme5419-main .theme5419-right {
     overflow: hidden;
-    background-image: url(./LeftSidebar.png);
+    background-image: url(../img/leftSidebar.png);
     background-size: 80%;
     background-repeat: repeat-y;
 }
