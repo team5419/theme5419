@@ -1,5 +1,5 @@
 <?php
-    wp_enqueue_style( 'base stlye', get_template_directory_uri() . '/assets/css/main.php');
+    wp_enqueue_style( 'base stlye', get_stylesheet_uri());
 
     // add fonts
     wp_enqueue_style(
