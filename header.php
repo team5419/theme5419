@@ -40,7 +40,7 @@
 
                     <?php wp_nav_menu( array(
                         "menu"            => "header-menu",
-                        "items_wrap"      => "<span>%3$s</span>",
+                        "items_wrap"      => "<span>hi[ %3$s ]</span>",
                         "container_class" => "theme5419-navbar"
                     ) ) ?>
                 <!-- </div> -->
