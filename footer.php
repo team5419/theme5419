@@ -1,3 +1,11 @@
+<?php
+/**
+ * The Footer template for our theme
+ *
+ * @package theme5419
+ */
+?>
+
         </div>
 
         <div class="theme5419-footer">
