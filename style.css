@@ -151,17 +151,14 @@ body {
 .theme5419-main .theme5419-right {
     overflow: hidden;
     background-size: 80%;
-    background-repeat: repeat-y;
 }
 
 .theme5419-main .theme5419-left {
-    background-image: url(assets/images/leftSidebar.jpg);
-    background-position: top left;
+    background: url(./assets/images/leftSidebar.jpg) top left repeat-y;
 }
 
 .theme5419-main .theme5419-right {
-    background-image: url(assets/images/rightSidebar.jpg);
-    background-position: top right;
+    background: url(./assets/images/rightSidebar.jpg) top right repeat-y;
 }
 
 .theme5419-main .theme5419-content {
