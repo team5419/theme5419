@@ -13,12 +13,12 @@
     );
 
     // add navbar
-    function register_nav_menu() {
+    function theme5419_register_nav_menu() {
         register_nav_menus(
             array(
-                'header' => __( 'Header' )
+                'header_menu' => __( 'Header', "header" )
             )
         );
     }
-    add_action( 'init', 'register_nav_menu' );
+    add_action( 'init', 'theme5419_register_nav_menu' );
 ?>
