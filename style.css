@@ -154,11 +154,11 @@ body {
 }
 
 .theme5419-main .theme5419-left {
-    background: url(/wp-content/themes/theme5419/assets/images/leftSidebar.jpg) top left repeat-y;
+    background: url(images/leftSidebar.jpg) repeat-y top left;
 }
 
 .theme5419-main .theme5419-right {
-    background: url(/wp-content/themes/theme5419/assets/images/rightSidebar.jpg) top right repeat-y;
+    background: url(images/rightSidebar.jpg) repeat-y top right;
 }
 
 .theme5419-main .theme5419-content {
