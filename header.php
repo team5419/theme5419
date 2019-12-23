@@ -23,12 +23,12 @@
                 <div class="theme5419-content">
                     <img
                         class="theme5419-header-logo"
-                        src="<? get_theme_file_uri('assets/images/logo.png'); ?>"
+                        src="<?php echo get_theme_file_uri('assets/images/logo.png'); ?>"
                     >
                 </div>
                 <img
                     class="theme5419-header-triangle"
-                    src="<? get_theme_file_uri('assets/images/leftTriangle.svg'); ?>"
+                    src="<?php echo get_theme_file_uri('assets/images/leftTriangle.svg'); ?>"
                 >
             </div>
             <div class="theme5419-content">
