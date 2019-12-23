@@ -23,12 +23,12 @@
                 <div class="theme5419-content">
                     <img
                         class="theme5419-header-logo"
-                        src="img/logo.png"
+                        src="<? get_theme_file_uri('assets/images/logo.png'); ?>"
                     >
                 </div>
                 <img
                     class="theme5419-header-triangle"
-                    src="img/leftTriangle.svg"
+                    src="<? get_theme_file_uri('assets/images/leftTriangle.svg'); ?>"
                 >
             </div>
             <div class="theme5419-content">
@@ -42,7 +42,7 @@
             <div class="theme5419-right">
                 <img
                     class="theme5419-header-triangle"
-                    src="img/rightTriangle.svg"
+                    src="<? get_theme_file_uri('assets/images/rightTriangle.svg'); ?>"
                 >
                 <div class="theme5419-content">
                     <span class="theme5419-header-page">HOME</span>

@@ -156,12 +156,13 @@ body {
 }
 
 .theme5419-main .theme5419-left {
+    /* background-image: url(get_theme_file_uri('/assets/images/leftSidebar.jpg' */
     background-image: url(./assets/images/leftSidebar.jpg);
     background-position: top left;
 }
 
 .theme5419-main .theme5419-right {
-    background-image: url(./assets/images/rightSidebar.jpg);
+    /* background-image: url(./assets/images/rightSidebar.jpg); */
     background-position: top right;
 }
 
