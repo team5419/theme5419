@@ -42,7 +42,7 @@
             <div class="theme5419-right">
                 <img
                     class="theme5419-header-triangle"
-                    src="<? get_theme_file_uri('assets/images/rightTriangle.svg'); ?>"
+                    src="<?php echo get_theme_file_uri('assets/images/rightTriangle.svg'); ?>"
                 >
                 <div class="theme5419-content">
                     <span class="theme5419-header-page">HOME</span>
