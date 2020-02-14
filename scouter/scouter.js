@@ -225,7 +225,6 @@ window.onbeforeunload = (e)=>{
 }
 
 window.onload = ()=>{
-    $( "#dialog" ).dialog();
     $(".portButton").click(()=>{
         cardData.targetPortData[currCycleNumber] = $( this ).attr('name');
     })
