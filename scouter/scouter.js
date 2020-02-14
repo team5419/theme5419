@@ -206,7 +206,7 @@ function createSlider(scoreType, cycleNumber){
       },
       slide: function( event, ui ) {
         handle.text( ui.value );
-        cardData[`${scoreType}Data`][currCycleNumber - 1] = ui.value;
+        cardData[`${scoreType}Data`][$(this).attr('id').match(/\d+/)[0]] = ui.value;
       }
     });
 
@@ -225,30 +225,25 @@ function createSlider(scoreType, cycleNumber){
 }
 
 function createCard(container, cycleNumber){
-    var cycleNum = cycleNumber.toString();
-    
-    
-    
+    var cycleNum = cycleNumber.toString();    
     $(container).append(`
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">Cycle ${(currCycleNumber + 1)}</h5>
             <div>
-                <div id="shotBalls${cycleNum}">
-                    <div id="shotBalls${cycleNum}-handle" class="ui-slider-handle"></div>
+                <div id="shotBalls${cycleNum}" style="margin-bottom: 15px;">
+                    <div id="shotBalls${cycleNum}-handle" class="ui-slider-handle sliderHandle" style="width: 1em;height: 1.6em;top: 50%;margin-top: -.8em;text-align: center;line-height: 1.6em;"></div>
                 </div>
-                <div id="scoredBalls${cycleNum}">
-                    <div id="scoredBalls${cycleNum}-handle" class="ui-slider-handle"></div>
-                </div>               
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-secondary active"> <input type="radio" name="topPort" id="topPort${cycleNum}" class="portButton" autocomplete="off">Top</label>
-                    <label class="btn btn-secondary"><input type="radio" name="botPort" id="botPort${cycleNum}" class="portButton" autocomplete="off">Bot</label>
-                </div>
+                <div id="scoredBalls${cycleNum}" style="margin-bottom: 15px;">
+                    <div id="scoredBalls${cycleNum}-handle" class="ui-slider-handle sliderHandle" style="width: 1em;height: 1.6em;top: 50%;margin-top: -.8em;text-align: center;line-height: 1.6em;"></div>
+                </div>  
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary portButton" id="botPort${cycleNum}" name="botPort">Bottom</button>
+                    <button type="button" class="btn btn-secondary portButton" id="topPort${cycleNum}" name="topPort">Inner/Outer</button>
+                </div>             
             </div>
         </div>
     </div>`);
-    
-
     createSlider("shotBalls", currCycleNumber);
     createSlider("scoredBalls", currCycleNumber);
     currCycleNumber++;
@@ -257,13 +252,20 @@ function createCard(container, cycleNumber){
 }
 
 window.onbeforeunload = (e)=>{
+
     localStorage.data = JSON.stringify(matches);
+    return false;
 }
 
 window.onload = ()=>{
-    $(".portButton").click(()=>{
-        cardData.targetPortData[currCycleNumber] = $( this ).attr('name');
-    })
+    // $(".portButton").click(()=>{
+    //     cardData.targetPortData[currCycleNumber] = $( this ).attr('name');
+    // })
+
+    $("#autoCardDiv").delegate(".portButton", "click", function(){
+        console.log("test");
+        cardData.targetPortData[$(this).attr('id').match(/\d+/)[0]] = $( this ).attr('name');
+    });
 
     $("#autoCycleButton").click(()=>{
         createCard("#autoCardDiv", currCycleNumber);

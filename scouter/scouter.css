@@ -160,7 +160,7 @@ textarea{
     width: 40px;
     height: 40px;
 }
-#custom-handle {
+.custom-handle {
     width: 1.5em;
     height: 1.6em;
     top: 50%;
