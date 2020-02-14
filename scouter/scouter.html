@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="./scouter.css">
 </head>
 <body>
-  
+    <div id="staticBox"></div>
     <form id='form'>
       <div class="inputs form-group">
         <h3>Pre Match</h3>
@@ -84,6 +84,11 @@
         <h3>Teleop</h3>
         <div>
           <div class="table-section">
+            <h4>Balls</h4>
+            <div id="teleopCardDiv"></div>
+            <button type="button" class="btn btn-secondary" id="teleopCycleButton">Add Cycle</button>
+          </div>
+          <div class="table-section">
             <h4>Spinner</h4>
             <table>
               <tr><td><label>Rotation Control</label></td><td><input value="false" type="checkbox"></td></tr>
@@ -109,7 +114,14 @@
         <button type="button" class="form-control" data-toggle="modal" data-target="#dataModal">Manage Data</button>
       </div>
     </form>
-    <div>
+
+
+
+
+
+
+<!-- when generate QR clicked-->
+    <div> 
       <div class="modal fade" id="qrModal" role="dialog">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -134,6 +146,13 @@
         </div>
       </div>
     </div>
+
+
+
+
+
+
+    <!-- when manage data clicked-->
     <div>
       <div class="modal fade" id="dataModal" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -166,6 +185,11 @@
         </div>
       </div>
     </div>
+
+
+
+
+    <!-- when setting ico clicked-->
     <div>
       <div class="modal fade" id="apiModal" role="dialog">
         <div class="modal-dialog">

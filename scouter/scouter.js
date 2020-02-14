@@ -4,8 +4,9 @@ let inputs = $('.data');
 let link = document.getElementById('download');
 let QRindex = -1;
 let teams, pos, file, url, loop;
-let currCycleNumber = 0;
-let cardData = {'shotBallsData': [], 'scoredBallsData' : [], 'targetPortData' : []};
+let autoCycleNumber = 0;
+let teleopCycleNumber = 0;
+let cardData = {'teleop':{'ShotBallsData': [], 'ScoredBallsData' : [], 'TargetPortData' : []}, 'auto':{'ShotBallsData': [], 'ScoredBallsData' : [], 'TargetPortData' : []} };
 console.log(matches)
 function loadAPI(){
     teams = []
@@ -85,6 +86,7 @@ function assignEdit(){
 }
 
 function save(){
+    //[[scoutName, scoutNumber, matchNumber, teamNumber, initLine(Bool), cycle1AutoShot, cycle1AutoScored, cycle1Port..., autoPosition, cycle1TeleopShot, cycle1TeleopScored, cycle1Port..., teleopPosition, spinnerRotation, spinnerPosition, climb, comment] [match2]...]
     console.log('save')
     $('#dataSave').attr('disabled', true);
     for(let i in matches){
@@ -100,8 +102,8 @@ function save(){
             let val = td.text();
             console.log(val);
             matches[i][f] = val;
-        }
     }
+    
     console.log(matches);
 }
 
@@ -138,21 +140,34 @@ $('#form h3').click(function() {
 $('#form').submit((e)=>{ 
     e.preventDefault();
     if(confirm("are you sure you want to submit?")){
+
+        //[[scoutName, scoutNumber, matchNumber, teamNumber, initLine(Bool), cycle1AutoShot, cycle1AutoScored, cycle1Port..., autoPosition, cycle1TeleopShot, cycle1TeleopScored, cycle1Port..., teleopPosition, spinnerRotation, spinnerPosition, climb, comment] [match2]...]
+
         let match = [];
         let tr = $('<tr></tr>');
         matchNums.push(inputs[2].value);
         tr.append($('<td class="delMatch"><button class="btn btn-danger">&times;</button></td>'))
-        for(let i in [...Array(21)]){
+        for(let i in [...Array(4)]){
             match.push(inputs[i].value);
             tr.append($('<td></td>').text(inputs[i].value).addClass('dataCell'));
             $('#data tbody').append(tr);
             if(i == 2){
                 inputs[i].value++;
             }
-            if(i>3 && i<20){
-                inputs[i].value = '0';
+        }
+        // match.push($("#initLine").val());
+        
+
+        for(let i in [...Array(4)]){
+            match.push(inputs[i].value);
+            tr.append($('<td></td>').text(inputs[i].value).addClass('dataCell'));
+            $('#data tbody').append(tr);
+            if(i == 2){
+                inputs[i].value++;
             }
         }
+
+
         match.push($('#comments').val())
         $('#comments').val('')
         matches.push(match);
@@ -160,7 +175,7 @@ $('#form').submit((e)=>{
         assignDelete();
         assignEdit();
     }
-    console.log('submit');
+
     $('#QRbutton').click();
 });
 
@@ -194,9 +209,13 @@ $('#apiSave').click(()=>{
     }
 });
 
-function createSlider(scoreType, cycleNumber){
-    var handle = $( "#" + scoreType + cycleNumber + "-handle" );
-    $( "#" + scoreType + cycleNumber.toString() ).slider({
+
+
+
+function createSlider(state, scoreType, cycleNumber){
+    console.log("#"  + state + scoreType + cycleNumber.toString());
+    var handle = $( "#" + state + scoreType + cycleNumber + "-handle" );
+    $( "#" + state + scoreType + cycleNumber.toString() ).slider({
       value:5,
       min: 0,
       max: 5,
@@ -205,18 +224,19 @@ function createSlider(scoreType, cycleNumber){
         handle.text( $( this ).slider( "value" ) );
       },
       slide: function( event, ui ) {
+        console.log(cardData);
         handle.text( ui.value );
-        cardData[`${scoreType}Data`][$(this).attr('id').match(/\d+/)[0]] = ui.value;
+        cardData[state][`${scoreType}Data`][$(this).attr('id').match(/\d+/)[0]] = ui.value;
       }
     });
 
-    // $(`shotBalls${currCycleNumber}`).slider({
+    // $(`shotBalls${autoCycleNumber}`).slider({
     //     formatter: function(value) {
     //         return value;
     //     }
     // });
 
-    // var slider = new Slider(`#shotBalls${currCycleNumber}`, {
+    // var slider = new Slider(`#shotBalls${autoCycleNumber}`, {
     //     formatter: function(value) {
     //         console.log(value);
     //         return value;
@@ -224,29 +244,39 @@ function createSlider(scoreType, cycleNumber){
     // });
 }
 
-function createCard(container, cycleNumber){
-    var cycleNum = cycleNumber.toString();    
+function createCard(state, container, cycleNumber){
+    
+    var currCycleNum = (state == "teleop")? teleopCycleNumber : autoCycleNumber;
+    var cycleNum = cycleNumber.toString();
     $(container).append(`
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">Cycle ${(currCycleNumber + 1)}</h5>
+            <h5 class="card-title">Cycle ${(currCycleNum + 1)}</h5>
             <div>
-                <div id="shotBalls${cycleNum}" style="margin-bottom: 15px;">
-                    <div id="shotBalls${cycleNum}-handle" class="ui-slider-handle sliderHandle" style="width: 1em;height: 1.6em;top: 50%;margin-top: -.8em;text-align: center;line-height: 1.6em;"></div>
+                <div id="${state}ShotBalls${cycleNum}" style="margin-bottom: 15px;">
+                    <div id="${state}ShotBalls${cycleNum}-handle" class="ui-slider-handle sliderHandle" style="width: 1em;height: 1.6em;top: 50%;margin-top: -.8em;text-align: center;line-height: 1.6em;"></div>
                 </div>
-                <div id="scoredBalls${cycleNum}" style="margin-bottom: 15px;">
-                    <div id="scoredBalls${cycleNum}-handle" class="ui-slider-handle sliderHandle" style="width: 1em;height: 1.6em;top: 50%;margin-top: -.8em;text-align: center;line-height: 1.6em;"></div>
+                <div id="${state}ScoredBalls${cycleNum}" style="margin-bottom: 15px;">
+                    <div id="${state}ScoredBalls${cycleNum}-handle" class="ui-slider-handle sliderHandle" style="width: 1em;height: 1.6em;top: 50%;margin-top: -.8em;text-align: center;line-height: 1.6em;"></div>
                 </div>  
                 <div class="btn-group">
-                    <button type="button" class="btn btn-secondary portButton" id="botPort${cycleNum}" name="botPort">Bottom</button>
-                    <button type="button" class="btn btn-secondary portButton" id="topPort${cycleNum}" name="topPort">Inner/Outer</button>
+                    <button type="button" class="btn btn-secondary portButton" id="${state}BotPort${cycleNum}" name="botPort">Bottom</button>
+                    <button type="button" class="btn btn-secondary portButton" id="${state}TopPort${cycleNum}" name="topPort">Inner/Outer</button>
                 </div>             
             </div>
         </div>
     </div>`);
-    createSlider("shotBalls", currCycleNumber);
-    createSlider("scoredBalls", currCycleNumber);
-    currCycleNumber++;
+
+
+    createSlider("auto", "ShotBalls", currCycleNum);
+    createSlider("auto", "ScoredBalls", currCycleNum);
+    createSlider("teleop", "ShotBalls", currCycleNum);
+    createSlider("teleop", "ScoredBalls", currCycleNum);
+    if (state == "teleop") {
+        teleopCycleNumber++;
+    } else {
+        autoCycleNumber++;
+    }
     
     
 }
@@ -254,12 +284,12 @@ function createCard(container, cycleNumber){
 window.onbeforeunload = (e)=>{
 
     localStorage.data = JSON.stringify(matches);
-    return false;
+    // return false;
 }
 
 window.onload = ()=>{
     // $(".portButton").click(()=>{
-    //     cardData.targetPortData[currCycleNumber] = $( this ).attr('name');
+    //     cardData.targetPortData[autoCycleNumber] = $( this ).attr('name');
     // })
 
     $("#autoCardDiv").delegate(".portButton", "click", function(){
@@ -268,11 +298,22 @@ window.onload = ()=>{
     });
 
     $("#autoCycleButton").click(()=>{
-        createCard("#autoCardDiv", currCycleNumber);
+        createCard("auto", "#autoCardDiv", autoCycleNumber);
     })
 
-    createCard("#autoCardDiv", currCycleNumber);
-    console.log("test");
+    $("#teleopCardDiv").delegate(".portButton", "click", function(){
+        console.log("test");
+        cardData.targetPortData[$(this).attr('id').match(/\d+/)[0]] = $( this ).attr('name');
+    });
+
+    $("#teleopCycleButton").click(()=>{
+        createCard("teleop", "#teleopCardDiv", teleopCycleNumber);
+    })
+
+
+    createCard("teleop", "#teleopCardDiv", teleopCycleNumber);
+    createCard("auto", "#autoCardDiv", autoCycleNumber);
+
     if(localStorage.getItem('data') != ''){
         matches = JSON.parse(localStorage.data);
         console.log('pull data');
@@ -298,4 +339,5 @@ window.onload = ()=>{
     }
     assignDelete();
     assignEdit();
+}
 }
