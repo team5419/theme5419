@@ -195,25 +195,58 @@ $('#apiSave').click(()=>{
 });
 
 function createSlider(scoreType, cycleNumber){
-    var handle = $( "#" + scoreType + cycleNumber + "-handle" );
-    $( "#" + scoreType + cycleNumber.toString() ).slider({
-      value:5,
-      min: 0,
-      max: 5,
-      step: 1,
-      create: function() {
-        handle.text( $( this ).slider( "value" ) );
-      },
-      slide: function( event, ui ) {
-        handle.text( ui.value );
-        cardData[scoreType].push(ui.value);
-      }
+    // var handle = $( "#" + scoreType + cycleNumber + "-handle" );
+    // $( "#" + scoreType + cycleNumber.toString() ).slider({
+    //   value:5,
+    //   min: 0,
+    //   max: 5,
+    //   step: 1,
+    //   create: function() {
+    //     handle.text( $( this ).slider( "value" ) );
+    //   },
+    //   slide: function( event, ui ) {
+    //     handle.text( ui.value );
+    //     cardData[scoreType].push(ui.value);
+    //   }
+    // });
+
+    $(`shotBalls${currCycleNumber}`).slider({
+        formatter: function(value) {
+            return value;
+        }
     });
+
+    // var slider = new Slider(`#shotBalls${currCycleNumber}`, {
+    //     formatter: function(value) {
+    //         console.log(value);
+    //         return value;
+    //     }
+    // });
 }
 
 function createCard(container, cycleNumber){
     var cycleNum = cycleNumber.toString();
-    $(container).append(`<div class="card" style="width: 18rem;"><div class="card-body"><h5 class="card-title">Cycle ${(currCycleNumber + 1)}</h5><div><label for="shotBalls${cycleNum}">Shot Balls</label><div id="shotBalls${cycleNum}"><div id="shotBalls${cycleNum}-handle" class="ui-slider-handle"></div></div><label for="scoredBalls${cycleNum}">Scored Balls</label><div id="scoredBalls${cycleNum}"><div id="scoredBalls${cycleNum}-handle" class="ui-slider-handle"></div></div><div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary active"><input type="radio" name="topPort" id="topPort${cycleNum}" class="portButton" autocomplete="off">Top</label><label class="btn btn-secondary"><input type="radio" name="botPort" id="botPort${cycleNum}" class="portButton" autocomplete="off">Bot</label></div></div></div></div>`);
+    
+    
+    
+    $(container).append(`
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Cycle ${(currCycleNumber + 1)}</h5>
+            <div>
+                <input id="shotBalls${cycleNum}" data-slider-id='shotBalls${cycleNum}' type="text" data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="5"/>
+                <input id="scoredBalls${cycleNum}" data-slider-id='scoredBalls${cycleNum}' type="text" data-slider-min="0" data-slider-max="5" data-slider-step="1" data-slider-value="5"/>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary active"> <input type="radio" name="topPort" id="topPort${cycleNum}" class="portButton" autocomplete="off">Top</label>
+                    <label class="btn btn-secondary"><input type="radio" name="botPort" id="botPort${cycleNum}" class="portButton" autocomplete="off">Bot</label>
+                </div>
+            </div>
+        </div>
+    </div>`);
+    
+
+
+    
     currCycleNumber++;
     createSlider("shotBalls", currCycleNumber);
     createSlider("scoredBalls", currCycleNumber);
