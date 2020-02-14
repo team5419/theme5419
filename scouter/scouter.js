@@ -4,6 +4,8 @@ let inputs = $('.data');
 let link = document.getElementById('download');
 let QRindex = -1;
 let teams, pos, file, url, loop;
+let currCycleNumber = 0;
+let cardData = {'shotBallsData': [], 'scoredBallsData' : [], 'targetPortData' : []};
 console.log(matches)
 function loadAPI(){
     teams = []
@@ -24,6 +26,7 @@ function loadAPI(){
     }
     xhr.send();
 }
+
 
 function exportToCSV(filename) {
     if(filename == null){return;}
@@ -191,12 +194,48 @@ $('#apiSave').click(()=>{
     }
 });
 
+function createSlider(scoreType, cycleNumber){
+    var handle = $( "#" + scoreType + cycleNumber + "-handle" );
+    $( "#" + scoreType + cycleNumber.toString() ).slider({
+      value:5,
+      min: 0,
+      max: 5,
+      step: 1,
+      create: function() {
+        handle.text( $( this ).slider( "value" ) );
+      },
+      slide: function( event, ui ) {
+        handle.text( ui.value );
+        cardData[scoreType].push(ui.value);
+      }
+    });
+}
+
+function createCard(container, cycleNumber){
+    var cycleNum = cycleNumber.toString();
+    $(container).append(`<div class="card" style="width: 18rem;"><div class="card-body"><h5 class="card-title">Cycle ${(currCycleNumber + 1)}</h5><div><label for="shotBalls${cycleNum}">Shot Balls</label><div id="shotBalls${cycleNum}"><div id="shotBalls${cycleNum}-handle" class="ui-slider-handle"></div></div><label for="scoredBalls${cycleNum}">Scored Balls</label><div id="scoredBalls${cycleNum}"><div id="scoredBalls${cycleNum}-handle" class="ui-slider-handle"></div></div><div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary active"><input type="radio" name="topPort" id="topPort${cycleNum}" class="portButton" autocomplete="off">Top</label><label class="btn btn-secondary"><input type="radio" name="botPort" id="botPort${cycleNum}" class="portButton" autocomplete="off">Bot</label></div></div></div></div>`);
+    currCycleNumber++;
+    createSlider("shotBalls", currCycleNumber);
+    createSlider("scoredBalls", currCycleNumber);
+    
+}
+
 window.onbeforeunload = (e)=>{
     localStorage.data = JSON.stringify(matches);
 }
 
 window.onload = ()=>{
-    console.log('load');
+
+    $(".portButton").click(()=>{
+        cardData.targetPortData[currCycleNumber] = $( this ).attr('name');
+    })
+
+    $("#autoCycleButton").click(()=>{
+        createCard("#autoCardDiv", currCycleNumber);
+    })
+
+    createCard("#autoCardDiv", currCycleNumber);
+    console.log("test");
     if(localStorage.getItem('data') != ''){
         matches = JSON.parse(localStorage.data);
         console.log('pull data');
@@ -218,6 +257,7 @@ window.onload = ()=>{
             matches.splice(trNum)
             $('#data tr:nth-child(' + trNum + 1 + ')')
         })
+        $( "#speed" ).selectmenu()
     }
     assignDelete();
     assignEdit();

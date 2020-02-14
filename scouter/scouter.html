@@ -4,10 +4,16 @@
   <title>Monkey Scout</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./bootstrap.min.css">
-  <script src="./jquery-3.3.1.js"></script>
+
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"></script>
+  
   <script src="./bootstrap.min.js"></script>
-  <link rel="stylesheet" href="scouter.css">
+  <link rel="stylesheet" href="./bootstrap.min.css">
+  <link rel="stylesheet" href="./scouter.css">
 </head>
 <body>
     <form id='form'>
@@ -23,47 +29,103 @@
         </div>
       </div>
       <div class="inputs form-group">
-        <h3>Sandstorm</h3>
+        <h3>Autonomous</h3>
         <div>
           <div class="table-section">
-            <h4>Hatch Panels</h4>
             <table>
-              <tr><td><label>Level 1</label></td><td><input class="form-control data" value="0" required="true" type="number" min="0" max="4"></td><td><button type="button" class="plus btn btn-lg">+</button></td><td><button type="button" class="minus btn btn-lg">-</button></td></tr>
-              <tr><td><label>Level 2</label></td><td><input class="form-control data" value="0" required="true" type="number" min="0" max="4"></td><td><button type="button" class="plus btn btn-lg">+</button></td><td><button type="button" class="minus btn btn-lg">-</button></td></tr>
-              <tr><td><label>Level 3</label></td><td><input class="form-control data" value="0" required="true" type="number" min="0" max="4"></td><td><button type="button" class="plus btn btn-lg">+</button></td><td><button type="button" class="minus btn btn-lg">-</button></td></tr>
-              <tr><td><label>Cargo ship</label></td><td><input class="form-control data" value="0" required="true" type="number" min="0" max="8"></td><td><button type="button" class="plus btn btn-lg">+</button></td><td><button type="button" class="minus btn btn-lg">-</button></td></tr>
+              <tr><td><label>Init Line</label></td><td><input class="form-check-input" value="false" required="true" type="checkbox"></td></tr>
             </table>
           </div>
           <div class="table-section">
-            <h4>Cargo</h4>
-            <table>
-              <tr><td><label>Level 1</label></td><td><input class="form-control data" value="0" required="true" type="number" name="autoRocketCargo1" min="0" max="4"></td><td><button type="button" class="plus btn btn-lg">+</button></td><td><button type="button" class="minus btn btn-lg">-</button></td></tr>
-              <tr><td><label>Level 2</label></td><td><input class="form-control data" value="0" required="true" type="number" name="autoRocketCargo2" min="0" max="4"></td><td><button type="button" class="plus btn btn-lg">+</button></td><td><button type="button" class="minus btn btn-lg">-</button></td></tr>
-              <tr><td><label>Level 3</label></td><td><input class="form-control data" value="0" required="true" type="number" name="autoRocketCargo3" min="0" max="4"></td><td><button type="button" class="plus btn btn-lg">+</button></td><td><button type="button" class="minus btn btn-lg">-</button></td></tr>
-              <tr><td><label>Cargo ship</label></td><td><input class="form-control data" value="0" required="true" type="number" name="autoShipCargo" min="0" max="8"></td><td><button type="button" class="plus btn btn-lg">+</button></td><td><button type="button" class="minus btn btn-lg">-</button></td></tr>
-            </table>
+            <h4>Balls</h4>
+            <div id="autoCardDiv"></div>
+            <button type="button" class="btn btn-secondary" id="autoCycleButton">Add Cycle</button>
           </div>
+
+          <h4>Shooting Positions</h4>
+          <!-- <form action="#"> -->
+ 
+            <fieldset>
+              <label for="#primary">Primary</label>
+              <select name="primary" id="primary">
+                <option selected="selected">Alliance Init Line</option>
+                <option>Alliance-side DJ</option>
+                <option>Opponent-side DJ</option>
+                <option>Alliance-side RZ</option>
+                <option>Opponent-side RZ</option>
+                <option>Opponent Init Line</option>
+                <option>Oppoonent Shooting Area</option>
+              </select>
+            </fieldset>
+            <fieldset>
+              <label for="#secondary">Secondary</label>
+              <select name="secondary" id="secondary">
+              <option selected="selected">Alliance Init Line</option>
+                <option>Alliance-side DJ</option>
+                <option>Opponent-side DJ</option>
+                <option>Alliance-side RZ</option>
+                <option>Opponent-side RZ</option>
+                <option>Opponent Init Line</option>
+                <option>Oppoonent Shooting Area</option>tion>
+              </select>
+            </fieldset>
+           
+          <!-- </form> -->
+          <!-- <div class="btn-group">
+            <div class="dropdown show">
+              <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Primary
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Alliance Init Line</a>
+                <a class="dropdown-item" href="#">Behind DJ</a>
+                <a class="dropdown-item" href="#">In Front DJ</a>
+                <a class="dropdown-item" href="#">Opponent Init Line</a>
+                <a class="dropdown-item" href="#">Opponent Shooting Area</a>
+                <a class="dropdown-item" href="#">Other (specify in comment)</a>
+              </div>
+            </div>
+
+            <div class="dropdown show">
+              <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Secondary
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Alliance Init Line</a>
+                <a class="dropdown-item" href="#">Behind DJ</a>
+                <a class="dropdown-item" href="#">In Front DJ</a>
+                <a class="dropdown-item" href="#">Opponent Init Line</a>
+                <a class="dropdown-item" href="#">Opponent Shooting Area</a>
+                <a class="dropdown-item" href="#">Not Applicable</a>
+              </div>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                  <button class="dropdown-item" type="button">Action</button>
+                  <button class="dropdown-item" type="button">Another action</button>
+                  <button class="dropdown-item" type="button">Something else here</button>
+                </div>
+              </div>
+            </div> -->
+          </div>
+
+
         </div>
       </div>
       <div class="inputs form-group">
         <h3>Teleop</h3>
         <div>
           <div class="table-section">
-            <h4>Hatch Panels</h4>
+            <h4>Spinner</h4>
             <table>
-              <tr><td><label>Level 1</label></td><td><input class="form-control data" value="0" required="true" type="number" name="teleRocketCargo1" min="0" max="4"></td><td><button type="button" class="plus btn btn-lg">+</button></td><td><button type="button" class="minus btn btn-lg">-</button></td></tr>
-              <tr><td><label>Level 2</label></td><td><input class="form-control data" value="0" required="true" type="number" name="teleRocketCargo2" min="0" max="4"></td><td><button type="button" class="plus btn btn-lg">+</button></td><td><button type="button" class="minus btn btn-lg">-</button></td></tr>
-              <tr><td><label>Level 3</label></td><td><input class="form-control data" value="0" required="true" type="number" name="teleRocketCargo3" min="0" max="4"></td><td><button type="button" class="plus btn btn-lg">+</button></td><td><button type="button" class="minus btn btn-lg">-</button></td></tr>
-              <tr><td><label>Cargo ship</label></td><td><input class="form-control data" value="0" required="true" type="number" name="teleShipCargo" min="0" max="8"></td><td><button type="button" class="plus btn btn-lg">+</button></td><td><button type="button" class="minus btn btn-lg">-</button></td></tr>
+              <tr><td><label>Rotation Control</label></td><div><input value="false" required="true" type="checkbox"></td></tr>
+              <tr><td><label>Position Control</label></td><td><input value="false" required="true" type="checkbox"></td></tr>
             </table>
-          </div>
-          <div class="table-section">
-            <h4>Cargo</h4>
+            <h4>Climb</h4>
             <table>
-              <tr><td><label>Level 1</label></td><td><input class="form-control data" value="0" required="true" type="number" name="autoRocketCargo1" min="0" max="4"></td><td><button type="button" class="plus btn btn-lg">+</button></td><td><button type="button" class="minus btn btn-lg">-</button></td></tr>
-              <tr><td><label>Level 2</label></td><td><input class="form-control data" value="0" required="true" type="number" name="autoRocketCargo2" min="0" max="4"></td><td><button type="button" class="plus btn btn-lg">+</button></td><td><button type="button" class="minus btn btn-lg">-</button></td></tr>
-              <tr><td><label>Level 3</label></td><td><input class="form-control data" value="0" required="true" type="number" name="autoRocketCargo3" min="0" max="8"></td><td><button type="button" class="plus btn btn-lg">+</button></td><td><button type="button" class="minus btn btn-lg">-</button></td></tr>
-              <tr><td><label>Cargo ship</label></td><td><input class="form-control data" value="0" required="true" type="number" min="0" max="8"></td><td><button type="button" class="plus btn btn-lg">+</button></td><td><button type="button" class="minus btn btn-lg">-</button></td></tr>
+              <tr><td><div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary active"><input type="radio" name="options" id="option1" autocomplete="off" value="outer"> Outer</label><label class="btn btn-secondary"><input type="radio" name="options" id="option2" autocomplete="off" value="center"> Center</label><label class="btn btn-secondary"><input type="radio" name="options" id="option3" autocomplete="off" value="level"> Level</label><label class="btn btn-secondary"><input type="radio" name="options" id="option3" autocomplete="off" value="ground"checked> Ground</label></div></td></tr>
             </table>
           </div>
         </div>
@@ -171,7 +233,7 @@
         </div>
       </div>
     </div>
-    <script src="qrcode.min.js"></script>
-    <script src="scouter.js"></script>
+    <script src="./qrcode.min.js"></script>
+    <script src="./scouter.js"></script>
 </body>
 </html>
