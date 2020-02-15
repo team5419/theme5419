@@ -7,6 +7,7 @@ let teams, pos, file, url, loop;
 let autoCycleNumber = 0;
 let teleopCycleNumber = 0;
 let cardData = {'teleop':{'ShotBallsData': [], 'ScoredBallsData' : [], 'TargetPortData' : []}, 'auto':{'ShotBallsData': [], 'ScoredBallsData' : [], 'TargetPortData' : []} };
+let checkboxes = [false, false, false];
 console.log(matches)
 function loadAPI(){
     teams = []
@@ -102,6 +103,7 @@ function save(){
             let val = td.text();
             console.log(val);
             matches[i][f] = val;
+        }
     }
     
     console.log(matches);
@@ -155,8 +157,10 @@ $('#form').submit((e)=>{
                 inputs[i].value++;
             }
         }
-        // match.push($("#initLine").val());
-        
+        match.push($("#initLine").val());
+        match.push($("#checkbox1")).is(":checked");
+        match.push($("#checkbox2")).is(":checked");
+        match.push($("#checkbox3")).is(":checked");
 
         for(let i in [...Array(4)]){
             match.push(inputs[i].value);
@@ -308,8 +312,7 @@ window.onload = ()=>{
 
     $("#teleopCycleButton").click(()=>{
         createCard("teleop", "#teleopCardDiv", teleopCycleNumber);
-    })
-
+    });
 
     createCard("teleop", "#teleopCardDiv", teleopCycleNumber);
     createCard("auto", "#autoCardDiv", autoCycleNumber);
@@ -340,4 +343,4 @@ window.onload = ()=>{
     assignDelete();
     assignEdit();
 }
-}
+

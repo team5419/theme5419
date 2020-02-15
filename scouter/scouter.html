@@ -8,6 +8,7 @@
 
   <link rel="stylesheet" href="./jquery-ui.css">
   <link rel="stylesheet" href="./bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -35,9 +36,10 @@
         <h3>Autonomous</h3>
         <div>
           <div class="table-section">
-            <table>
-              <tr><td><label>Init Line</label><input class="form-check-input" value="false" type="checkbox"></td></tr>
-            </table>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="checkbox1" value="false">
+              <label class="custom-control-label" for="checkbox1">Crossed Init Line</label>
+            </div>
           </div>
           <div class="table-section">
             <h4>Balls</h4>
@@ -90,10 +92,14 @@
           </div>
           <div class="table-section">
             <h4>Spinner</h4>
-            <table>
-              <tr><td><label>Rotation Control</label></td><td><input value="false" type="checkbox"></td></tr>
-              <tr><td><label>Position Control</label></td><td><input value="false" type="checkbox"></td></tr>
-            </table>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="checkbox2" value="false">
+              <label class="custom-control-label" for="checkbox2">Rotation Control</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="checkbox3" value="false">
+              <label class="custom-control-label" for="checkbox3">Position Control</label>
+            </div>
             <h4>Climb</h4>
             <table>
               <tr><td><div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary active"><input type="radio" name="options" id="option1" autocomplete="off" value="outer"> Outer</label><label class="btn btn-secondary"><input type="radio" name="options" id="option2" autocomplete="off" value="center"> Center</label><label class="btn btn-secondary"><input type="radio" name="options" id="option3" autocomplete="off" value="level"> Level</label><label class="btn btn-secondary"><input type="radio" name="options" id="option3" autocomplete="off" value="ground"checked> Ground</label></div></td></tr>
