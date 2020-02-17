@@ -161,7 +161,21 @@ $('#form').submit((e)=>{
         match.push($("#checkbox1")).is(":checked");
         match.push($("#checkbox2")).is(":checked");
         match.push($("#checkbox3")).is(":checked");
-
+        for(let k = 0; k < 2; k++){{
+            for(let j in [...Array(cardData.auto.ScoredBallsData.length)]){
+                if(cardData[k].ShotBallsData[j] == null){
+                    match.push("5");
+                }else{
+                    match.push(cardData[k].ShotBallsData[j]);
+                }
+                if(cardData[k].ScoredBallsData[j] == null){
+                    match.push("5");
+                }else{
+                    match.push(cardData[k].ScoredBallsData[j])
+                }
+                match.push(cardData[k].TargetPortData[j]);
+            }
+        }}
         for(let i in [...Array(4)]){
             match.push(inputs[i].value);
             tr.append($('<td></td>').text(inputs[i].value).addClass('dataCell'));
@@ -298,7 +312,7 @@ window.onload = ()=>{
 
     $("#autoCardDiv").delegate(".portButton", "click", function(){
         console.log("test");
-        cardData.targetPortData[$(this).attr('id').match(/\d+/)[0]] = $( this ).attr('name');
+        cardData.auto.TargetPortData[$(this).attr('id').match(/\d+/)[0]] = $( this ).attr('name');
     });
 
     $("#autoCycleButton").click(()=>{
@@ -307,12 +321,15 @@ window.onload = ()=>{
 
     $("#teleopCardDiv").delegate(".portButton", "click", function(){
         console.log("test");
-        cardData.targetPortData[$(this).attr('id').match(/\d+/)[0]] = $( this ).attr('name');
+        cardData.teleop.TargetPortData[$(this).attr('id').match(/\d+/)[0]] = $( this ).attr('name');
     });
 
     $("#teleopCycleButton").click(()=>{
         createCard("teleop", "#teleopCardDiv", teleopCycleNumber);
     });
+
+    $("#primaryPostition").selectmenu();
+    $("#secondaryPosition").selectmenu();
 
     createCard("teleop", "#teleopCardDiv", teleopCycleNumber);
     createCard("auto", "#autoCardDiv", autoCycleNumber);

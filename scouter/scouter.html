@@ -48,33 +48,28 @@
           </div>
 
           <h4>Shooting Positions</h4>
-
           <div class="btn-group">
             <div class="dropdown show">
-              <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Primary
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Alliance Init Line</a>
-                <a class="dropdown-item" href="#">Behind DJ</a>
-                <a class="dropdown-item" href="#">In Front DJ</a>
-                <a class="dropdown-item" href="#">Opponent Init Line</a>
-                <a class="dropdown-item" href="#">Opponent Shooting Area</a>
-                <a class="dropdown-item" href="#">Other (specify in comment)</a>
-              </div>
+              <label for="speed">Select a position</label>
+              <select name="Primary" id="primaryPosition" class="dropdown-menu">
+                <option>Alliance Init Line</option>
+                <option>Behind DJ</option>
+                <option selected="selected">In Front DJ</option>
+                <option>Opponent Init Line</option>
+                <option>Other (Comment)</option>
+              </select>
             </div>
 
             <div class="dropdown show">
-              <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Secondary
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Alliance Init Line</a>
-                <a class="dropdown-item" href="#">Behind DJ</a>
-                <a class="dropdown-item" href="#">In Front DJ</a>
-                <a class="dropdown-item" href="#">Opponent Init Line</a>
-                <a class="dropdown-item" href="#">Opponent Shooting Area</a>
-                <a class="dropdown-item" href="#">Not Applicable</a>
+              <div class="dropdown show">
+                <label for="speed">Select a position</label>
+                <select name="Secondary" id="secondaryPosition" class="dropdown-menu">
+                  <option>Alliance Init Line</option>
+                  <option>Behind DJ</option>
+                  <option selected="selected">In Front DJ</option>
+                  <option>Opponent Init Line</option>
+                  <option>Other (Comment)</option>
+                </select>
               </div>
             </div>
           </div>
@@ -102,7 +97,7 @@
             </div>
             <h4>Climb</h4>
             <table>
-              <tr><td><div class="btn-group btn-group-toggle" data-toggle="buttons"><label class="btn btn-secondary active"><input type="radio" name="options" id="option1" autocomplete="off" value="outer"> Outer</label><label class="btn btn-secondary"><input type="radio" name="options" id="option2" autocomplete="off" value="center"> Center</label><label class="btn btn-secondary"><input type="radio" name="options" id="option3" autocomplete="off" value="level"> Level</label><label class="btn btn-secondary"><input type="radio" name="options" id="option3" autocomplete="off" value="ground"checked> Ground</label></div></td></tr>
+              <tr><td><div class="btn-group btn-group-toggle climb-group" data-toggle="buttons"><label class="btn btn-secondary active"><input type="radio" name="options" id="option1" autocomplete="off" value="outer"> Outer</label><label class="btn btn-secondary"><input type="radio" name="options" id="option2" autocomplete="off" value="center"> Center</label><label class="btn btn-secondary"><input type="radio" name="options" id="option3" autocomplete="off" value="level"> Level</label><label class="btn btn-secondary"><input type="radio" name="options" id="option3" autocomplete="off" value="ground"checked> Ground</label></div></td></tr>
             </table>
           </div>
         </div>
