@@ -64,11 +64,11 @@ h4{
     display: inline-block !important;
     width: 100px !important;
 }
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 720px) {
     #form, #form .form-group{
         display: block;
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 0;
+        margin-right: 0;
         flex-basis: 100%;
         width: 50%;
     }

@@ -41,6 +41,7 @@
               <label class="custom-control-label" for="checkbox1">Crossed Init Line</label>
             </div>
           </div>
+
           <div class="table-section">
             <h4>Balls</h4>
             <div id="autoCardDiv"></div>
@@ -49,32 +50,32 @@
 
           <h4>Shooting Positions</h4>
           <div class="btn-group">
-            <div class="dropdown show">
-              <label for="speed">Select a position</label>
-              <select name="Primary" id="primaryPosition" class="dropdown-menu">
-                <option>Alliance Init Line</option>
-                <option>Behind DJ</option>
-                <option selected="selected">In Front DJ</option>
-                <option>Opponent Init Line</option>
-                <option>Other (Comment)</option>
-              </select>
-            </div>
-
-            <div class="dropdown show">
-              <div class="dropdown show">
-                <label for="speed">Select a position</label>
-                <select name="Secondary" id="secondaryPosition" class="dropdown-menu">
-                  <option>Alliance Init Line</option>
-                  <option>Behind DJ</option>
-                  <option selected="selected">In Front DJ</option>
-                  <option>Opponent Init Line</option>
-                  <option>Other (Comment)</option>
-                </select>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="primaryPosition" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Primary
+              </button>
+              <div class="dropdown-menu" aria-labelledby="primaryPosition">
+                <button class="dropdown-item primary" type="button" onclick="$('#primaryPosition').text($(this).text())">Alliance Init Line</button>
+                <button class="dropdown-item primary" type="button" onclick="$('#primaryPosition').text($(this).text())">Behind DJ</button>
+                <button class="dropdown-item primary" type="button" onclick="$('#primaryPosition').text($(this).text())">In Front DJ</button>
+                <button class="dropdown-item primary" type="button" onclick="$('#primaryPosition').text($(this).text())">Opponent Init Line</button>
+                <button class="dropdown-item primary" type="button" onclick="$('#primaryPosition').text($(this).text())">Other (Comment)</button>
               </div>
             </div>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="secondaryPosition" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Secondary
+              </button>
+              <div class="dropdown-menu" aria-labelledby="secondaryPosition">
+                <button class="dropdown-item secondary"  type="button" onclick="$('#secondaryPosition').text($(this).text())">Alliance Init Line</button>
+                <button class="dropdown-item secondary"  type="button" onclick="$('#secondaryPosition').text($(this).text())">Behind DJ</button>
+                <button class="dropdown-item secondary"  type="button" onclick="$('#secondaryPosition').text($(this).text())">In Front DJ</button>
+                <button class="dropdown-item secondary"  type="button" onclick="$('#secondaryPosition').text($(this).text())">Opponent Init Line</button>
+                <button class="dropdown-item secondary"  type="button" onclick="$('#secondaryPosition').text($(this).text())">Other (Comment)</button>
+              </div>
+            </div>
+               
           </div>
-
-
         </div>
       </div>
       <div class="inputs form-group">
@@ -96,9 +97,14 @@
               <label class="custom-control-label" for="checkbox3">Position Control</label>
             </div>
             <h4>Climb</h4>
-            <table>
-              <tr><td><div class="btn-group btn-group-toggle climb-group" data-toggle="buttons"><label class="btn btn-secondary active"><input type="radio" name="options" id="option1" autocomplete="off" value="outer"> Outer</label><label class="btn btn-secondary"><input type="radio" name="options" id="option2" autocomplete="off" value="center"> Center</label><label class="btn btn-secondary"><input type="radio" name="options" id="option3" autocomplete="off" value="level"> Level</label><label class="btn btn-secondary"><input type="radio" name="options" id="option3" autocomplete="off" value="ground"checked> Ground</label></div></td></tr>
-            </table>
+            <div>
+              <div class="btn-group" role="group" id="climbButtons">
+                <button type="button" class="btn btn-secondary climb" value="Outer" onclick="climbPosition = $(this).val()">Outer</button>
+                <button type="button" class="btn btn-secondary climb" value="Center" onclick="climbPosition = $(this).val()">Center</button>
+                <button type="button" class="btn btn-secondary climb" value="Level" onclick="climbPosition = $(this).val()">Level</button>
+                <button type="button" class="btn btn-secondary climb" value="Ground" onclick="climbPosition = $(this).val()">Ground</button>
+              </div> 
+            </div>
           </div>
         </div>
       </div>
@@ -109,10 +115,10 @@
         </div>
       </div>
       <div class="btn-control form-group">
-        <input class="form-control" required="true" id="submit" type="submit">
-        <button type="button" class="form-control" onclick="exportToCSV(prompt('File Name') + '.csv')">Download</button>
-        <button id='QRbutton' type="button" class="form-control" data-toggle="modal" data-target="#qrModal" onclick="generateQR()">Generate QR</button>
-        <button type="button" class="form-control" data-toggle="modal" data-target="#dataModal">Manage Data</button>
+        <input class="form-control btn-secondary" required="true" id="submit" type="submit">
+        <button type="button" class="form-control btn-secondary" onclick="exportToCSV(prompt('File Name') + '.csv')">Download</button>
+        <button id='QRbutton' type="button" class="form-control btn-secondary" data-toggle="modal" data-target="#qrModal" onclick="generateQR()">Generate QR</button>
+        <button type="button" class="form-control btn-secondary" data-toggle="modal" data-target="#dataModal">Manage Data</button>
       </div>
     </form>
 
