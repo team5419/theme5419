@@ -144,9 +144,7 @@ $('#form').submit((e)=>{
     console.log("sumbmitted");
     e.preventDefault();
     if(confirm("are you sure you want to submit?")){
-
         //[[scoutName, scoutNumber, matchNumber, teamNumber, initLine(Bool), cycle1AutoShot, cycle1AutoScored, cycle1Port..., autoPosition, cycle1TeleopShot, cycle1TeleopScored, cycle1Port..., teleopPosition, spinnerRotation, spinnerPosition, climb, comment] [match2]...]
-
         let match = [];
         let tr = $('<tr></tr>');
         matchNums.push(inputs[2].value);
@@ -171,6 +169,7 @@ $('#form').submit((e)=>{
         for(let k = 0; k < 2; k++){{
             mode = '';
             if(k == 0){
+                match.push("auto");
                 for(let j in [...Array(cardData.auto.ShotBallsData.length)]){
                     mode = 'auto'
                     if(cardData[mode].ShotBallsData[j] == null){
@@ -187,10 +186,13 @@ $('#form').submit((e)=>{
                         match.push(cardData[mode].ScoredBallsData[j]);
                         tr.append($('<td></td>').text(cardData[mode].ScoredBallsData[j]).addClass('dataCell'));
                     }
-                    match.push(cardData[mode].TargetPortData[j]);
-                    tr.append($('<td></td>').text(cardData[mode].TargetPortData[j]).addClass('dataCell'));
+                    for(let k in [...Array(cardData.auto.TargetPortData.length)]){
+                        match.push(cardData[mode].TargetPortData[j]);
+                        tr.append($('<td></td>').text(cardData[mode].TargetPortData[j]).addClass('dataCell'));
+                    }
                 }
             }else{
+                match.push("teleop");
                 for(let j in [...Array(cardData.teleop.ShotBallsData.length)]){
                     mode = 'teleop'
                     if(cardData[mode].ShotBallsData[j] == null){
@@ -207,11 +209,14 @@ $('#form').submit((e)=>{
                         match.push(cardData[mode].ScoredBallsData[j]);
                         tr.append($('<td></td>').text(cardData[mode].ScoredBallsData[j]).addClass('dataCell'));
                     }
-                    match.push(cardData[mode].TargetPortData[j]);
-                    tr.append($('<td></td>').text(cardData[mode].TargetPortData[j]).addClass('dataCell'));
+                    for(let k in [...Array(cardData.teleop.TargetPortData.length)]){
+                        match.push(cardData[mode].TargetPortData[j]);
+                        tr.append($('<td></td>').text(cardData[mode].TargetPortData[j]).addClass('dataCell'));
+                    }
                 }
             }   
         }}
+        match.push((cardData.auto.ShotBallsData.length + cardData.teleop.ShotBallsData.length));
         match.push($("#primaryPosition").text());
         tr.append($('<td></td>').text($("#primaryPosition").text()).addClass('dataCell'));
         match.push($("#secondaryPosition").text());
@@ -301,9 +306,11 @@ function createCard(state, container, cycleNumber){
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             <div>
+                <h6>Shot Balls</h6>
                 <div id="${state}ShotBalls${cycleNum}" style="margin-bottom: 15px;">
                     <div id="${state}ShotBalls${cycleNum}-handle" class="ui-slider-handle sliderHandle" style="width: 1em;height: 1.6em;top: 50%;margin-top: -.8em;text-align: center;line-height: 1.6em;"></div>
                 </div>
+                <h6>Scored Balls</h6>
                 <div id="${state}ScoredBalls${cycleNum}" style="margin-bottom: 15px;">
                     <div id="${state}ScoredBalls${cycleNum}-handle" class="ui-slider-handle sliderHandle" style="width: 1em;height: 1.6em;top: 50%;margin-top: -.8em;text-align: center;line-height: 1.6em;"></div>
                 </div>  

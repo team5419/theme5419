@@ -31,9 +31,17 @@ i {
     border-top: 2px #6d6d6d ridge;
     padding-top: 4px;
 }
+h3{
+    display: inline-block;
+    white-space: nowrap;
+}
 h4{
     display: inline-block;
+    white-space: nowrap;
 }
+
+
+
 #form{
     width: 100%;
     height: 100vh;
@@ -55,6 +63,7 @@ h4{
 .btn-control button, .btn-control input{
     display: inline-block;
     width: 20%;
+    height: 45px;
     margin-left: auto;
     margin-right: auto;
     word-wrap: none;
@@ -64,7 +73,7 @@ h4{
     display: inline-block !important;
     width: 100px !important;
 }
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 1024px) {
     #form, #form .form-group{
         display: block;
         margin-left: 0;
@@ -74,6 +83,15 @@ h4{
     }
     .table-section{
         display: inline-block;
+    }
+    .btn-control button, .btn-control input{
+        display: inline-block;
+        width: 20%;
+        height: 45px;
+        margin-left: auto;
+        margin-right: auto;
+        word-wrap: none;
+        min-width: 100vw;
     }
 }  
 label{
@@ -146,6 +164,7 @@ label{
 }
 textarea{
     display: inline-block;
+    width: max-content !important;
 }
 #data .delMatch{
     position: sticky;
@@ -179,17 +198,23 @@ textarea{
     color: white;
 }
 
-/* #autoCardDiv {
-    padding: 20px;
+#autoCardDiv {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#teleopCardDiv{
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .card-body {
     padding: 20px;
-} */
+} 
 /* 
 #staticBox {
 
-} */
+}
 
 
 #headerTemp {

@@ -43,7 +43,7 @@
           </div>
 
           <div class="table-section">
-            <h4>Balls</h4>
+            <h4>Ball Cycles</h4>
             <div id="autoCardDiv"></div>
             <button type="button" class="btn btn-secondary" id="autoCycleButton">Add Cycle</button>
           </div>
@@ -82,7 +82,7 @@
         <h3>Teleop</h3>
         <div>
           <div class="table-section">
-            <h4>Balls</h4>
+            <h4>Ball Cycles</h4>
             <div id="teleopCardDiv"></div>
             <button type="button" class="btn btn-secondary" id="teleopCycleButton">Add Cycle</button>
           </div>
@@ -114,7 +114,7 @@
           <textarea class='form-control data' id="comments" cols="30" rows="5"></textarea> 
         </div>
       </div>
-      <div class="btn-control form-group">
+      <div class="btn-control form-group btn-group" role="group">
         <input class="form-control btn-secondary" required="true" id="submit" type="submit">
         <button type="button" class="form-control btn-secondary" onclick="exportToCSV(prompt('File Name') + '.csv')">Download</button>
         <button id='QRbutton' type="button" class="form-control btn-secondary" data-toggle="modal" data-target="#qrModal" onclick="generateQR()">Generate QR</button>
