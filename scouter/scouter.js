@@ -6,7 +6,7 @@ let QRindex = -1;
 let teams, pos, file, url, loop;
 let autoCycleNumber = 0;
 let teleopCycleNumber = 0;
-let cardData = {'teleop':{'ShotBallsData': [], 'ScoredBallsData' : [], 'TargetPortData' : []}, 'auto':{'ShotBallsData': [], 'ScoredBallsData' : [], 'TargetPortData' : []} };
+let ballData = {'teleop':{'ShotBallsData': 0, 'ScoredBallsData' : 0, 'TargetPortData' : ""}, 'auto':{'ShotBallsData': 0, 'ScoredBallsData' : 0, 'TargetPortData' : ""} };
 let checkboxes = [false, false, false];
 let climbPosition = "";
 console.log(matches)
@@ -166,57 +166,8 @@ $('#form').submit((e)=>{
         for(let m = 0; m < 3; m++){
             $(`#checkbox${m+1}`).prop("checked", false);
         }
-        for(let k = 0; k < 2; k++){{
-            mode = '';
-            if(k == 0){
-                match.push("auto");
-                for(let j in [...Array(cardData.auto.ShotBallsData.length)]){
-                    mode = 'auto'
-                    if(cardData[mode].ShotBallsData[j] == null){
-                        match.push("5");
-                        tr.append($('<td></td>').text("5").addClass('dataCell'));
-                    }else{
-                        match.push(cardData[mode].ShotBallsData[j]);
-                        tr.append($('<td></td>').text(cardData[mode].ShotBallsData[j]).addClass('dataCell'));
-                    }
-                    if(cardData[mode].ScoredBallsData[j] == null){
-                        match.push("5");
-                        tr.append($('<td></td>').text("5").addClass('dataCell'));
-                    }else{
-                        match.push(cardData[mode].ScoredBallsData[j]);
-                        tr.append($('<td></td>').text(cardData[mode].ScoredBallsData[j]).addClass('dataCell'));
-                    }
-                    for(let k in [...Array(cardData.auto.TargetPortData.length)]){
-                        match.push(cardData[mode].TargetPortData[j]);
-                        tr.append($('<td></td>').text(cardData[mode].TargetPortData[j]).addClass('dataCell'));
-                    }
-                }
-            }else{
-                match.push("teleop");
-                for(let j in [...Array(cardData.teleop.ShotBallsData.length)]){
-                    mode = 'teleop'
-                    if(cardData[mode].ShotBallsData[j] == null){
-                        match.push("5");
-                        tr.append($('<td></td>').text("5").addClass('dataCell'));
-                    }else{
-                        match.push(cardData[mode].ShotBallsData[j]);
-                        tr.append($('<td></td>').text(cardData[mode].ShotBallsData[j]).addClass('dataCell'));
-                    }
-                    if(cardData[mode].ScoredBallsData[j] == null){
-                        match.push("5");
-                        tr.append($('<td></td>').text("5").addClass('dataCell'));
-                    }else{
-                        match.push(cardData[mode].ScoredBallsData[j]);
-                        tr.append($('<td></td>').text(cardData[mode].ScoredBallsData[j]).addClass('dataCell'));
-                    }
-                    for(let k in [...Array(cardData.teleop.TargetPortData.length)]){
-                        match.push(cardData[mode].TargetPortData[j]);
-                        tr.append($('<td></td>').text(cardData[mode].TargetPortData[j]).addClass('dataCell'));
-                    }
-                }
-            }   
-        }}
-        match.push((cardData.auto.ShotBallsData.length + cardData.teleop.ShotBallsData.length));
+        
+        match.push((ballData.auto.ShotBallsData.length + ballData.teleop.ShotBallsData.length));
         match.push($("#primaryPosition").text());
         tr.append($('<td></td>').text($("#primaryPosition").text()).addClass('dataCell'));
         match.push($("#secondaryPosition").text());
@@ -234,16 +185,26 @@ $('#form').submit((e)=>{
 });
 
 $('.plus').click((e)=>{
-    let input = $($($($($(e.currentTarget).parent()).parent()).children()[1]).children()[0]);
-    if(input.val()<parseInt(input.attr('max'))){
-        input.val(parseInt(input.val())+1);
-    }
+    let input = $($($($($(e.currentTarget).parent()).parent()).children()[3]).children()[0]);
+    input.val(parseInt(input.val())+1);    
 });
 
 $('.minus').click((e)=>{
-    let input = $($($($($(e.currentTarget).parent()).parent()).children()[1]).children()[0]);
+    let input = $($($($($(e.currentTarget).parent()).parent()).children()[3]).children()[0]);
     if(input.val()>parseInt(input.attr('min'))){
         input.val(parseInt(input.val())-1);
+    }
+});
+
+$('.plusFive').click((e)=>{
+    let input = $($($($($(e.currentTarget).parent()).parent()).children()[3]).children()[0]);
+    input.val(parseInt(input.val())+5);    
+});
+
+$('.minusFive').click((e)=>{
+    let input = $($($($($(e.currentTarget).parent()).parent()).children()[3]).children()[0]);
+    if(input.val()>(parseInt(input.attr('min')) + 4)){
+        input.val(parseInt(input.val())-5);
     }
 });
 
@@ -263,79 +224,6 @@ $('#apiSave').click(()=>{
     }
 });
 
-
-
-
-function createSlider(state, scoreType, cycleNumber){
-    console.log("#"  + state + scoreType + cycleNumber.toString());
-    var handle = $( "#" + state + scoreType + cycleNumber + "-handle" );
-    $( "#" + state + scoreType + cycleNumber.toString() ).slider({
-      value:5,
-      min: 0,
-      max: 5,
-      step: 1,
-      create: function() {
-        handle.text( $( this ).slider( "value" ) );
-      },
-      slide: function( event, ui ) {
-        console.log(cardData);
-        handle.text( ui.value );
-        cardData[state][`${scoreType}Data`][$(this).attr('id').match(/\d+/)[0]] = ui.value;
-      }
-    });
-
-    // $(`shotBalls${autoCycleNumber}`).slider({
-    //     formatter: function(value) {
-    //         return value;
-    //     }
-    // });
-
-    // var slider = new Slider(`#shotBalls${autoCycleNumber}`, {
-    //     formatter: function(value) {
-    //         console.log(value);
-    //         return value;
-    //     }
-    // });
-}
-
-function createCard(state, container, cycleNumber){
-    
-    var currCycleNum = (state == "teleop")? teleopCycleNumber : autoCycleNumber;
-    var cycleNum = cycleNumber.toString();
-    $(container).append(`
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <div>
-                <h6>Shot Balls</h6>
-                <div id="${state}ShotBalls${cycleNum}" style="margin-bottom: 15px;">
-                    <div id="${state}ShotBalls${cycleNum}-handle" class="ui-slider-handle sliderHandle" style="width: 1em;height: 1.6em;top: 50%;margin-top: -.8em;text-align: center;line-height: 1.6em;"></div>
-                </div>
-                <h6>Scored Balls</h6>
-                <div id="${state}ScoredBalls${cycleNum}" style="margin-bottom: 15px;">
-                    <div id="${state}ScoredBalls${cycleNum}-handle" class="ui-slider-handle sliderHandle" style="width: 1em;height: 1.6em;top: 50%;margin-top: -.8em;text-align: center;line-height: 1.6em;"></div>
-                </div>  
-                <div class="btn-group" data-toggle="buttons">
-                    <button type="button" class="btn btn-secondary btn-group-toggle ${state}PortButton" id="${state}BotPort${cycleNum}" name="botPort">Bottom</button>
-                    <button type="button" class="btn btn-secondary btn-group-toggle ${state}PortButton" id="${state}TopPort${cycleNum}" name="topPort">Inner/Outer</button>
-                </div>             
-            </div>
-        </div>
-    </div>`);
-
-
-    createSlider("auto", "ShotBalls", currCycleNum);
-    createSlider("auto", "ScoredBalls", currCycleNum);
-    createSlider("teleop", "ShotBalls", currCycleNum);
-    createSlider("teleop", "ScoredBalls", currCycleNum);
-    if (state == "teleop") {
-        teleopCycleNumber++;
-    } else {
-        autoCycleNumber++;
-    }
-    
-    
-}
-
 window.onbeforeunload = (e)=>{
 
     localStorage.data = JSON.stringify(matches);
@@ -344,14 +232,14 @@ window.onbeforeunload = (e)=>{
 
 window.onload = ()=>{
     // $(".portButton").click(()=>{
-    //     cardData.targetPortData[autoCycleNumber] = $( this ).attr('name');
+    //     ballData.targetPortData[autoCycleNumber] = $( this ).attr('name');
     // })
 
     $("#autoCardDiv").delegate(".autoPortButton", "click", function(){
         console.log("test");
         var buttonArray = [];
         var clickedButton;
-        cardData.auto.TargetPortData[$(this).attr('id').match(/\d+/)[0]] = $( this ).attr('name');
+        ballData.auto.TargetPortData[$(this).attr('id').match(/\d+/)[0]] = $( this ).attr('name');
         clickedButton = $(this);
         // $(this).button('toggle');
         buttonArray = $('.autoPortButton').toArray();
@@ -362,15 +250,11 @@ window.onload = ()=>{
         }
     });
 
-    $("#autoCycleButton").click(()=>{
-        createCard("auto", "#autoCardDiv", autoCycleNumber);
-    });
-
     $("#teleopCardDiv").delegate(".teleopPortButton", "click", function(){
         console.log("test");
         var buttonArray = [];
         var clickedButton;
-        cardData.teleop.TargetPortData[$(this).attr('id').match(/\d+/)[0]] = $( this ).attr('name');
+        ballData.teleop.TargetPortData[$(this).attr('id').match(/\d+/)[0]] = $( this ).attr('name');
         clickedButton = $(this);
         // $(this).button('toggle');
         buttonArray = $('.teleopPortButton').toArray();
@@ -381,15 +265,8 @@ window.onload = ()=>{
         };
     });
 
-    $("#teleopCycleButton").click(()=>{
-        createCard("teleop", "#teleopCardDiv", teleopCycleNumber);
-    });
-
     $("#primaryPostition").dropdown();
     $("#secondaryPosition").dropdown();
-
-    createCard("teleop", "#teleopCardDiv", teleopCycleNumber);
-    createCard("auto", "#autoCardDiv", autoCycleNumber);
 
     if(localStorage.getItem('data') != ''){
         matches = JSON.parse(localStorage.data);

@@ -211,6 +211,17 @@ textarea{
 .card-body {
     padding: 20px;
 } 
+
+td {
+    max-width: fit-content;
+    white-space: nowrap;
+}
+
+.minus {
+    min-width: 30px;
+    max-width: fit-content;
+}
+
 /* 
 #staticBox {
 
@@ -220,3 +231,4 @@ textarea{
 #headerTemp {
     white-space: nowrap;
 }
+
