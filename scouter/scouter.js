@@ -6,7 +6,7 @@ let QRindex = -1;
 let teams, pos, file, url, loop;
 let autoCycleNumber = 0;
 let teleopCycleNumber = 0;
-let cardData = {'teleop':{'ShotBallsData': [], 'ScoredBallsData' : [], 'TargetPortData' : []}, 'auto':{'ShotBallsData': [], 'ScoredBallsData' : [], 'TargetPortData' : []} };
+let cardData = {'teleop':{'ShotBallsData': [5], 'ScoredBallsData' : [5]}, 'auto':{'ShotBallsData': [5], 'ScoredBallsData' : [5]} };
 let checkboxes = [false, false, false];
 let climbPosition = "";
 console.log(matches)
@@ -58,7 +58,7 @@ function exportToCSV(filename) {
     } else {
         var link = document.createElement("a");
         if (link.download !== undefined) { // feature detection
-            // Browsers that support HTML5 download attribute
+            // Browsers that sup     HTML5 download attribute
             var url = URL.createObjectURL(blob);
             link.setAttribute("href", url);
             link.setAttribute("download", filename);
@@ -166,56 +166,18 @@ $('#form').submit((e)=>{
         for(let m = 0; m < 3; m++){
             $(`#checkbox${m+1}`).prop("checked", false);
         }
-        for(let k = 0; k < 2; k++){{
-            mode = '';
-            if(k == 0){
-                match.push("auto");
-                for(let j in [...Array(cardData.auto.ShotBallsData.length)]){
-                    mode = 'auto'
-                    if(cardData[mode].ShotBallsData[j] == null){
-                        match.push("5");
-                        tr.append($('<td></td>').text("5").addClass('dataCell'));
-                    }else{
-                        match.push(cardData[mode].ShotBallsData[j]);
-                        tr.append($('<td></td>').text(cardData[mode].ShotBallsData[j]).addClass('dataCell'));
-                    }
-                    if(cardData[mode].ScoredBallsData[j] == null){
-                        match.push("5");
-                        tr.append($('<td></td>').text("5").addClass('dataCell'));
-                    }else{
-                        match.push(cardData[mode].ScoredBallsData[j]);
-                        tr.append($('<td></td>').text(cardData[mode].ScoredBallsData[j]).addClass('dataCell'));
-                    }
-                    for(let k in [...Array(cardData.auto.TargetPortData.length)]){
-                        match.push(cardData[mode].TargetPortData[j]);
-                        tr.append($('<td></td>').text(cardData[mode].TargetPortData[j]).addClass('dataCell'));
-                    }
-                }
-            }else{
-                match.push("teleop");
-                for(let j in [...Array(cardData.teleop.ShotBallsData.length)]){
-                    mode = 'teleop'
-                    if(cardData[mode].ShotBallsData[j] == null){
-                        match.push("5");
-                        tr.append($('<td></td>').text("5").addClass('dataCell'));
-                    }else{
-                        match.push(cardData[mode].ShotBallsData[j]);
-                        tr.append($('<td></td>').text(cardData[mode].ShotBallsData[j]).addClass('dataCell'));
-                    }
-                    if(cardData[mode].ScoredBallsData[j] == null){
-                        match.push("5");
-                        tr.append($('<td></td>').text("5").addClass('dataCell'));
-                    }else{
-                        match.push(cardData[mode].ScoredBallsData[j]);
-                        tr.append($('<td></td>').text(cardData[mode].ScoredBallsData[j]).addClass('dataCell'));
-                    }
-                    for(let k in [...Array(cardData.teleop.TargetPortData.length)]){
-                        match.push(cardData[mode].TargetPortData[j]);
-                        tr.append($('<td></td>').text(cardData[mode].TargetPortData[j]).addClass('dataCell'));
-                    }
-                }
-            }   
-        }}
+        match.push(cardData.auto.ShotBallsData.reduce(function(a, b){
+            return a + b; 
+        }, 0));
+        match.push(cardData.auto.ScoredBallsData.reduce(function(a, b){
+            return a + b; 
+        }, 0));
+        match.push(cardData.teleop.ShotBallsData.reduce(function(a, b){
+            return a + b; 
+        }, 0));
+        match.push(cardData.teleop.ScoredBallsData.reduce(function(a, b){
+            return a + b; 
+        }, 0));
         match.push((cardData.auto.ShotBallsData.length + cardData.teleop.ShotBallsData.length));
         match.push($("#primaryPosition").text());
         tr.append($('<td></td>').text($("#primaryPosition").text()).addClass('dataCell'));
@@ -233,19 +195,6 @@ $('#form').submit((e)=>{
     $('#QRbutton').click();
 });
 
-$('.plus').click((e)=>{
-    let input = $($($($($(e.currentTarget).parent()).parent()).children()[1]).children()[0]);
-    if(input.val()<parseInt(input.attr('max'))){
-        input.val(parseInt(input.val())+1);
-    }
-});
-
-$('.minus').click((e)=>{
-    let input = $($($($($(e.currentTarget).parent()).parent()).children()[1]).children()[0]);
-    if(input.val()>parseInt(input.attr('min'))){
-        input.val(parseInt(input.val())-1);
-    }
-});
 
 $('#matchNum').change(function(){
     if(teams != null && pos != null){
@@ -299,9 +248,15 @@ function createSlider(state, scoreType, cycleNumber){
 }
 
 function createCard(state, container, cycleNumber){
-    
     var currCycleNum = (state == "teleop")? teleopCycleNumber : autoCycleNumber;
     var cycleNum = cycleNumber.toString();
+    if(state=="teleop"){
+        cardData.teleop.ShotBallsData[teleopCycleNumber] = 5;
+        cardData.teleop.ScoredBallsData[teleopCycleNumber] = 5;
+    }else{
+        cardData.auto.ShotBallsData[autoCycleNumber] = 5;
+        cardData.auto.ScoredBallsData[autoCycleNumber] = 5;
+    }
     $(container).append(`
     <div class="card" style="width: 18rem;">
         <div class="card-body">
@@ -313,11 +268,7 @@ function createCard(state, container, cycleNumber){
                 <h6>Scored Balls</h6>
                 <div id="${state}ScoredBalls${cycleNum}" style="margin-bottom: 15px;">
                     <div id="${state}ScoredBalls${cycleNum}-handle" class="ui-slider-handle sliderHandle" style="width: 1em;height: 1.6em;top: 50%;margin-top: -.8em;text-align: center;line-height: 1.6em;"></div>
-                </div>  
-                <div class="btn-group" data-toggle="buttons">
-                    <button type="button" class="btn btn-secondary btn-group-toggle ${state}PortButton" id="${state}BotPort${cycleNum}" name="botPort">Bottom</button>
-                    <button type="button" class="btn btn-secondary btn-group-toggle ${state}PortButton" id="${state}TopPort${cycleNum}" name="topPort">Inner/Outer</button>
-                </div>             
+                </div>               
             </div>
         </div>
     </div>`);
@@ -347,39 +298,10 @@ window.onload = ()=>{
     //     cardData.targetPortData[autoCycleNumber] = $( this ).attr('name');
     // })
 
-    $("#autoCardDiv").delegate(".autoPortButton", "click", function(){
-        console.log("test");
-        var buttonArray = [];
-        var clickedButton;
-        cardData.auto.TargetPortData[$(this).attr('id').match(/\d+/)[0]] = $( this ).attr('name');
-        clickedButton = $(this);
-        // $(this).button('toggle');
-        buttonArray = $('.autoPortButton').toArray();
-        for(var i = 0; i < 2; i++){
-            if(buttonArray[i] == clickedButton){
-                buttonArray[Math.abs(i - 1)].button('toggle');
-            }
-        }
-    });
-
     $("#autoCycleButton").click(()=>{
         createCard("auto", "#autoCardDiv", autoCycleNumber);
     });
 
-    $("#teleopCardDiv").delegate(".teleopPortButton", "click", function(){
-        console.log("test");
-        var buttonArray = [];
-        var clickedButton;
-        cardData.teleop.TargetPortData[$(this).attr('id').match(/\d+/)[0]] = $( this ).attr('name');
-        clickedButton = $(this);
-        // $(this).button('toggle');
-        buttonArray = $('.teleopPortButton').toArray();
-        for(let i in [...Array(2)]){
-            if(buttonArray[i] == clickedButton){
-                buttonArray[Math.abs(i - 1)].button('toggle');
-            }
-        };
-    });
 
     $("#teleopCycleButton").click(()=>{
         createCard("teleop", "#teleopCardDiv", teleopCycleNumber);
