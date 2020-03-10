@@ -217,10 +217,10 @@ td {
     white-space: nowrap;
 }
 
-.minus {
-    min-width: 30px;
+/* .minus {
+    width: 80px;
     max-width: fit-content;
-}
+} */
 
 /* 
 #staticBox {

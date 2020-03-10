@@ -28,7 +28,7 @@
             <tr><td><label>Scout's Name</label></td><td><input class="form-control data" required="false" name="sName"></td></tr>
             <tr><td><label>Scout's Number</label></td><td><input class="form-control data" required="false" type="number" name="sNum"></td></tr>
             <tr><td><label>Match Number</label></td><td><input value="1" class="form-control data" required="true" type="number" id="matchNum" min="1"></td></tr>
-            <tr><td><label>Team Number</label></td><td><input class="form-control data" required="false" type="number" id="teamNum" min="1"></td><td><button data-toggle="modal" data-target="#apiModal" type="button" class="btn btn-light"><img src='../assets/settings.png' height="29px"></button></td></tr>
+            <tr><td><label>Team Number</label></td><td><input class="form-control data" required="false" type="number" id="teamNum" min="1"></td><td><button data-toggle="modal" data-target="#apiModal" type="button" class="btn btn-light"><img src='./assets/settings.png' height="29px"></button></td></tr>
           </table>
         </div>
       </div>
@@ -88,6 +88,10 @@
               <input type="checkbox" class="custom-control-input" id="checkbox3" value="false">
               <label class="custom-control-label" for="checkbox3">Position Control</label>
             </div>
+            <table>
+              <tr><td><label>Shot Balls</label></td><td><button type="button" class="minusFive btn btn-lg" name="teleop">-5</button></td><td><button type="button" class="minus btn btn-lg" name="teleop">-</button></td><td><input class="form-control data" value="0" required="true" type="number" min="0" max="4"></td><td><button type="button" class="plus btn btn-lg" name="teleop">+</button></td><td><button type="button" class="plusFive btn btn-lg" name="teleop">+5</button></td></tr>
+              <tr><td><label>Scored Balls</label></td><td><button type="button" class="minusFive btn btn-lg" name="teleop">-5</button></td><td><button type="button" class="minus btn btn-lg" name="teleop">-</button></td><td><input class="form-control data" value="0" required="true" type="number" min="0" max="4"></td><td><button type="button" class="plus btn btn-lg" name="teleop">+</button></td><td><button type="button" class="plusFive btn btn-lg" name="teleop">+5</button></td></tr>
+            </table>
             <h4>Climb</h4>
             <div>
               <div class="btn-group" role="group" id="climbButtons">
