@@ -5,6 +5,7 @@
  * @package theme5419
  */
 ?>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
@@ -40,7 +41,8 @@
 
                     <?php wp_nav_menu( array(
                         "menu"            => "header-menu",
-                        "container_class" => "theme5419-navbar"
+                        "container_class" => "theme5419-navbar",
+                        "items_wrap"      => "<span id='%1$s' class='%2$s" . join(" ", generate_get_menu_class()) . ">%3$s</span>"
                     ) ) ?>
                 <!-- </div> -->
             </div>
