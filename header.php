@@ -42,7 +42,7 @@
                     <?php wp_nav_menu( array(
                         "menu"            => "header-menu",
                         "container_class" => "theme5419-navbar",
-                        "items_wrap"      => "<span id='%1$s' class='%2$s" . join(" ", generate_get_menu_class()) . ">%3$s</span>"
+                        "items_wrap"      => "<span id='%1$s' class='%2$s" . join(" ", generate_get_menu_class()) . "'>%3$s</span>"
                     ) ) ?>
                 <!-- </div> -->
             </div>
