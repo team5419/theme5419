@@ -42,7 +42,6 @@
                 <?php wp_nav_menu( array(
                     "menu"            => "header-menu",
                     "container_class" => "theme5419-navbar",
-                    "items_wrap"      => '<span id="%1$s" class="%2$s">%3$s</span>'
                 ) ) ?>
             </div>
             <div class="theme5419-right">
