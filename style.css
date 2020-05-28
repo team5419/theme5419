@@ -229,21 +229,6 @@ template {
 	display: none;
 }
 
-/* Box sizing
---------------------------------------------- */
-
-/* Inherit box-sizing to more easily change it's value on a component level.
-@link http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
-*,
-*::before,
-*::after {
-	box-sizing: inherit;
-}
-
-html {
-	box-sizing: border-box;
-}
-
 /*--------------------------------------------------------------
 # Base
 --------------------------------------------------------------*/
@@ -374,10 +359,6 @@ table {
 	padding: 0;
 }
 
-/* Make sure logo link wraps around logo image. */
-.custom-logo-link {
-	display: inline-block;
-}
 
 /* Captions
 --------------------------------------------- */
@@ -483,11 +464,15 @@ table {
     --neg-header-height: -1.5in;
 }
 
-* {
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
 }
 
 html, body {
+	box-sizing: border-box;
+
     margin: 0px;
 
     width: 100%;
