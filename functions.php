@@ -7,6 +7,26 @@
  * @package _s
  */
 
+// add fonts
+wp_enqueue_style(
+    "Righteous and Comfortaa fonts",
+    "https://fonts.googleapis.com/css?family=Righteous|Comfortaa&display=swap"
+);
+wp_enqueue_style(
+    "font awesome",
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+);
+
+// add navbar
+function theme5419_register_nav_menu() {
+    register_nav_menus(
+        array(
+            'header_menu' => __( 'Header', "header" )
+        )
+    );
+}
+add_action( 'init', 'theme5419_register_nav_menu' );
+
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
 	define( '_S_VERSION', '1.0.0' );
