@@ -88,7 +88,11 @@ body {
     padding-top: 65px;
 }
 
-.theme5419-navbar span {
+.theme5419-header ul, li {
+    display: inline;
+    list-style: none;
+    padding: 0;
+
     font-family: 'Righteous', sans-serif;
     font-weight: bold;
     font-size: 18px;
@@ -97,6 +101,7 @@ body {
     
     margin: 10px;
 }
+
 
 .theme5419-header .theme5419-left,
 .theme5419-header .theme5419-right {
