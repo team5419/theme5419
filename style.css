@@ -454,7 +454,7 @@ body {
     margin: 10px;
 }
 
-a:link, a:active {
+a, a:link, a:active {
     color: inherit;
     text-decoration: inherit;
 }
