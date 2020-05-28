@@ -430,6 +430,7 @@ body {
 
 .theme5419-header {
     height: var(--header-height);
+    color: var(--light-gray);
 }
 
 .theme5419-navbar {
