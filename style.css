@@ -1,11 +1,11 @@
 /*
-Theme Name: Theme5419
-Theme URI: https://github.com/team5419/theme5419
-Author: Team5419
-Author URI: team5419.org
-Description: Theme for team5419
-License: GNU General Public License v2 or later
-Text Domain: team5419
+    Theme Name: Theme5419
+    Theme URI: https://github.com/team5419/theme5419
+    Author: Team5419
+    Author URI: team5419.org
+    Description: Theme for team5419
+    License: GNU General Public License v2 or later
+    Text Domain: team5419
 */
 :root {
     --team-color: #990000;
@@ -42,10 +42,6 @@ body {
     min-height: 100%;
 
     background-color: var(--light-gray);
-}
-
-html {
-    margin: 0px !important;
 }
 
 /* base layout */
