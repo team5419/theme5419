@@ -16,6 +16,7 @@ get_header();
 ?>
 
 	<main id="primary" class="site-main theme5419-main">
+		<div class="theme5419-left"></div>
 
 		<?php
 		if ( have_posts() ) :

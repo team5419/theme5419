@@ -119,6 +119,7 @@ if ( ! function_exists( '_s_woocommerce_wrapper_before' ) ) {
 	function _s_woocommerce_wrapper_before() {
 		?>
 			<main id="primary" class="site-main theme5419-main">
+				<div class="theme5419-left"></div>
 		<?php
 	}
 }
