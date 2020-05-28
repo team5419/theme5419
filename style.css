@@ -450,8 +450,6 @@ body {
     font-family: 'Righteous', sans-serif;
     font-weight: bold;
     font-size: 18px;
-
-    color: var(--light-gray);
     
     margin: 10px;
 }
