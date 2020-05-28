@@ -58,5 +58,3 @@
                 </div>
             </div>
         </header>
-
-        <div class="theme5419-main">
