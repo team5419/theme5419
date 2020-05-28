@@ -106,7 +106,7 @@ html {
     margin: 10px;
 }
 
-.theme5419-header a:link {
+.theme5419-header a:link, a:active {
     color: inherit;
     text-decoration: inherit;
 }
