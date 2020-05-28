@@ -11,7 +11,7 @@
 ?>
 
 	<main id="primary" class="site-main theme5419-main">
-		<div class="theme5419-left"></div>
+		<div class="theme5419-left"></div><div class="theme5419-content">
 
 		<section class="error-404 not-found">
 			<header class="page-header">
@@ -55,7 +55,7 @@
 			</div><!-- .page-content -->
 		</section><!-- .error-404 -->
 
-		<div class="theme5419-right"></div>
+		</div><div class="theme5419-right"></div>
 	</main><!-- #main -->
 
 <?php

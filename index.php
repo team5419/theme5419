@@ -16,7 +16,7 @@ get_header();
 ?>
 
 	<main id="primary" class="site-main theme5419-main">
-		<div class="theme5419-left"></div>
+		<div class="theme5419-left"></div><div class="theme5419-content">
 
 		<?php
 		if ( have_posts() ) :
@@ -50,7 +50,7 @@ get_header();
 
 		endif;
 		?>
-		<div class="theme5419-right"></div>
+		</div><div class="theme5419-right"></div>
 	</main><!-- #main -->
 
 <?php
