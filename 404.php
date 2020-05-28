@@ -12,7 +12,7 @@
 
 	<main id="primary" class="site-main theme5419-main">
 		<div class="theme5419-left"></div>
-		
+
 		<section class="error-404 not-found">
 			<header class="page-header">
 				<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', '_s' ); ?></h1>
@@ -55,6 +55,7 @@
 			</div><!-- .page-content -->
 		</section><!-- .error-404 -->
 
+		<div class="theme5419-right"></div>
 	</main><!-- #main -->
 
 <?php
