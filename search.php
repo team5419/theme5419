@@ -17,7 +17,7 @@ get_header();
 
 			<header class="page-header">
 				<h1 class="page-title">
-						<?php
+					<?php
 						printf( esc_html__( 'Search Results for: %s', '_s' ), '<span>' . get_search_query() . '</span>' );
 					?>
 				</h1>
