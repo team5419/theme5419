@@ -33,12 +33,6 @@
                 >
             </div>
             <div class="theme5419-content">
-                <!-- <div class="theme5419-navbar">
-                    <span>ABOUT</span>
-                    <span>SPONSORS</span>
-                    <span>FRC</span>
-                    <span>SCHEDULE</span> -->
-
                 <?php wp_nav_menu( array(
                     "menu"            => "header-menu",
                     "container_class" => "theme5419-navbar",

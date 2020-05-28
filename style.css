@@ -102,6 +102,10 @@ body {
     margin: 10px;
 }
 
+.theme5419-header a:link {
+    color: inherit;
+    text-decoration: inherit;
+}
 
 .theme5419-header .theme5419-left,
 .theme5419-header .theme5419-right {
