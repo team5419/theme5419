@@ -538,7 +538,8 @@ body {
     padding-top: 65px;
 }
 
-.theme5419-header ul, li {
+.theme5419-header ul,
+.theme5419-header li {
     display: inline;
     list-style: none;
     padding: 0;
