@@ -13,6 +13,7 @@
 	<?php _s_post_thumbnail(); ?>
 
 	<div class="entry-content">
+		<?php the_title('<h1>', '</h1>'); ?>
 		<?php
 		the_content(
 			sprintf(
