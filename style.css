@@ -222,12 +222,21 @@ template {
 	margin: 1.5em 0 0;
 }
 
+.entry-footer {
+    color: #555;
+    font-family: Arial, Helvetica, sans-serif
+}
+
 .page-links {
 	clear: both;
     margin: 0 0 1.5em;
-    color: #555
+    color: #555;
 }
 
+.page-link-text {
+    color: #555;
+    size: 10pt;
+}
 /* Comments
 --------------------------------------------- */
 .comment-content a {

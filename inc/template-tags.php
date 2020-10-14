@@ -64,13 +64,17 @@ if ( ! function_exists( '_s_entry_footer' ) ) :
 			if ( $categories_list ) {
 				/* translators: 1: list of categories. */
 				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', '_s' ) . '</span>', $categories_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			}
+				printf('; ');
 
+			}
+			
 			/* translators: used between list items, there is a space after the comma */
 			$tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', '_s' ) );
 			if ( $tags_list ) {
 				/* translators: 1: list of tags. */
 				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', '_s' ) . '</span>', $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				printf('; ');
+
 			}
 		}
 
@@ -90,6 +94,7 @@ if ( ! function_exists( '_s_entry_footer' ) ) :
 					wp_kses_post( get_the_title() )
 				)
 			);
+			printf('; ');
 			echo '</span>';
 		}
 

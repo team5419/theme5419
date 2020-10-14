@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template part for displaying posts
  *
@@ -19,23 +20,24 @@
 			sprintf(
 				wp_kses(
 					/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', '_s' ),
+					__('Continue reading<span class="screen-reader-text"> "%s"</span>', '_s'),
 					array(
 						'span' => array(
 							'class' => array(),
 						),
 					)
 				),
-				wp_kses_post( get_the_title() )
+				wp_kses_post(get_the_title())
 			)
 		);
 
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', '_s' ),
-				'after'  => '</div>',
-			)
-		);
+		// wp_link_pages(
+		// 	array(
+		// 		'before' => '<div class="page-links">' . esc_html__('Pages:', '_s'),
+		// 		'after'  => '</div>',
+		// 		'separator' => '[seperate]'
+		// 	)
+		// );
 		?>
 	</div><!-- .entry-content -->
 
