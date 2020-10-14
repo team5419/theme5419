@@ -355,7 +355,9 @@ template {
 
 /* Re-display the Theme Footer when Infinite Scroll has reached its end. */
 .infinity-end.neverending .site-footer {
-	display: block;
+    display: block;
+    color: #555;
+    font-family: Arial, Helvetica, sans-serif
 }
 
 /*--------------------------------------------------------------
