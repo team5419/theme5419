@@ -9,6 +9,16 @@
  * @package _s
  */
 
+ /**
+  * Get the string that should be displayed as the title at the top of the page.
+  */
+ function getTitle() {
+    if (is_home()) {
+        return "BLOG";
+    } else {
+        return strtoupper(get_the_title());
+    }
+ }
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +60,7 @@
                     src="<?php echo get_theme_file_uri('assets/images/rightTriangle.svg'); ?>"
                 >
                 <div class="theme5419-content">
-                    <span class="theme5419-header-page"> <?php echo strtoupper($wp_query->post->post_title) ?> </span>
+                    <span class="theme5419-header-page"> <?php echo getTitle() ?> </span>
                     <form action="TODO" class="theme5419-header-search">
                         <input type="text"/>
                         <button type="submit"><i class="fa fa-search"></i></button>
