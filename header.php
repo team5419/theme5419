@@ -61,10 +61,12 @@
                 >
                 <div class="theme5419-content">
                     <span class="theme5419-header-page"> <?php echo getTitle() ?> </span>
+                    /*
                     <form action="TODO" class="theme5419-header-search">
                         <input type="text"/>
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
+                    */
                 </div>
             </div>
         </header>
